@@ -1,0 +1,108 @@
+@import "./variables";
+
+/* FONT */
+// size
+$font-size-desktop: (
+  1: 56px,
+  2: 48px,
+  3: 32px,
+  4: 24px,
+  5: 18px,
+);
+
+$font-size-tablet: (
+  1: 48px,
+  2: 32px,
+  3: 24px,
+  4: 18px,
+  5: 16px,
+);
+
+$font-size-phone: (
+  1: 24px,
+  2: 20px,
+  3: 18px,
+  4: 16px,
+  5: 14px,
+);
+
+// line height
+$line-height-desktop: (
+  1: 1.1,
+  2: 1.2,
+  3: 1.2,
+  4: 1.2,
+  5: 1.2,
+);
+
+$line-height-tablet: (
+  1: 1.1,
+  2: 1.2,
+  3: 1.2,
+  4: 1.2,
+  5: 1.2,
+);
+
+$line-height-phone: (
+  1: 1.2,
+  2: 1.2,
+  3: 1.2,
+  4: 1.2,
+  5: 1.2,
+);
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: NORMAL;
+  font-weight: 400;
+  src: url("../../public/fonts/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: NORMAL;
+  font-weight: 700;
+  src: url("../../public/fonts/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+@mixin font-classes($sizes, $line-height) {
+  @each $index, $size in $sizes {
+    h#{$index},
+    .h#{$index} {
+      font-weight: bold;
+      font-size: $size;
+      line-height: map-get($line-height, $index);
+    }
+
+    .p#{$index} {
+      font-weight: normal;
+      font-size: $size;
+      line-height: map-get($line-height, $index);
+    }
+  }
+
+  * {
+    font-family: "Montserrat", sans-serif;
+    font-size: map-get($sizes, 5);
+    line-height: map-get($line-height, 5);
+  }
+}
+
+// Mobile
+@include font-classes($font-size-phone, $line-height-phone);
+
+// Tablets
+@media (min-width: map-get($breakpoints, md)) {
+  @include font-classes($font-size-tablet, $line-height-tablet);
+}
+
+// Desktop
+@media (min-width: map-get($breakpoints, lg)) {
+  @include font-classes($font-size-desktop, $line-height-desktop);
+}

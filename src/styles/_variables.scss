@@ -1,0 +1,49 @@
+@use "sass:map";
+
+// Spacer
+$spacer-1: 4px;
+$spacer-2: 8px;
+$spacer-3: 16px;
+$spacer-4: 24px;
+$spacer-5: 32px;
+$spacer-6: 40px;
+$spacer-7: 48px;
+$spacer-8: 56px;
+$spacer-9: 64px;
+$spacer-10: 72px;
+$spacer-11: 80px;
+
+$spacer: $spacer-1;
+$spacers: (
+  0: 0,
+  1: $spacer-1,
+  2: $spacer-2,
+  3: $spacer-3,
+  4: $spacer-4,
+  5: $spacer-5,
+  6: $spacer-6,
+  7: $spacer-7,
+  8: $spacer-8,
+  9: $spacer-9,
+);
+
+// Border
+$border-radius: 4px;
+$border-radius-lg: 8px;
+$border-radius-xl: 16px;
+
+$border-width: 1px;
+$border-width-lg: 2px;
+
+$box-shadow-top-right: 3px -3px 2px $grey-40;
+$box-shadow-right: 3px 0px 2px $grey-40;
+
+/* BREAKPOINTS */
+$breakpoints: (
+  xs: 365px,
+  s: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+// @debug map.get($breakpoints, "s"); => 576
