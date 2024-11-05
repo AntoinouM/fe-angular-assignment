@@ -22,8 +22,9 @@ B-- Sending events with @Output  -->A
 │   │   ├── media
 │   │   │   ├── MediaContainerComponent
 │   │   │   └── MediaPresenterComponent
-│   │   ├── media-detail
-│   │   │   ├── MediaDetailComponent
+│   │   │   └── MediaDetailComponent
+│   │   │   │    ├── MediaDetailPictureComponent
+│   │   │   │    └── ...
 │   │   ├── search
 │   │   │   └── SearchComponent
 │   │   ├── tabs
