@@ -7,7 +7,9 @@
   - [ ] Main dashboard
   - [ ] Multi components and reusability
   - [ ] Split into smallest components
-- [ ]
-- [ ]
-- [ ]
-- [ ]
+- [ ] Get data
+  - [ ] create service
+  - [ ] create a pre to check data
+- [ ] Create views
+  - [ ] Create pages and routes
+  - [ ] Create components
