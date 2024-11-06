@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { Media } from '../../../core/models/media.model';
 
 @Component({
   selector: 'app-detailed-view',
@@ -9,4 +10,10 @@ import { Component, input } from '@angular/core';
 })
 export class DetailedViewComponent {
   mediaId = input<string>();
+  media: Media = {
+    id: history.state.data.id,
+    title: history.state.data.title,
+    description: history.state.data.description,
+    rating: history.state.data.rating,
+  };
 }

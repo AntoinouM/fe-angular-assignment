@@ -78,7 +78,10 @@ export class TvshowsComponent {
   ]
 
   consoleEvent(id: string) {
-    console.log(`${id} has been clicked!`)
-    this.router.navigate([`/${id}`]);
+    this.router.navigate([`/${id}`], {
+      state: {
+        data: this.dataTest[+id - 1],
+      }
+    });
   }
 }
