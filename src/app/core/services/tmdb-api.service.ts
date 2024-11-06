@@ -9,7 +9,7 @@ export class TmdbApiService {
 
   private endpoint = '';
   private apiUrl = environment.apiUrl;
-  private apiKey = import.meta.env.NG_APP_API_KEY;
+  private apiKey = import.meta.env.NG_APP_KEY;
   private headers = {
       accept: 'application/json',
       Authorization: `Bearer ${this.apiKey}`
