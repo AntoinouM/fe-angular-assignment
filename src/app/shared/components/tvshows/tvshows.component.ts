@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { Media } from '../../../core/models/media.model';
+import { TvshowTileComponent } from './tvshow-tile/tvshow-tile.component';
 
 @Component({
-  selector: 'app-medias-component',
+  selector: 'tvshows',
   standalone: true,
-  imports: [],
-  templateUrl: './medias-component.component.html',
-  styleUrl: './medias-component.component.scss'
+  imports: [TvshowTileComponent],
+  templateUrl: './tvshows.component.html',
+  styleUrl: './tvshows.component.scss'
 })
-export class MediasComponentComponent {
+export class TvshowsComponent {
   dataTest: Media[] = [
     {
       id: '1',
@@ -72,5 +73,7 @@ export class MediasComponentComponent {
     }
   ]
 
-  
+  consoleEvent(id: string) {
+    console.log(`${id} has been clicked!`)
+  }
 }

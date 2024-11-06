@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-tvshow-tile-component',
+  selector: 'tv-show-tile',
   standalone: true,
   imports: [],
-  templateUrl: './tvshow-tile-component.component.html',
-  styleUrl: './tvshow-tile-component.component.scss',
+  templateUrl: './tvshow-tile.component.html',
+  styleUrl: './tvshow-tile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TvshowTileComponentComponent {
+export class TvshowTileComponent {
   @Input() id: string = '';
   @Input() title: string = '';
   @Input() description: string = '';

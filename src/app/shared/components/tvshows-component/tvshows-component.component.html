@@ -1,4 +1,0 @@
-@for (movie of dataTest; track movie.id) {
-<app-tvshow-tile-component (clickedItemEvent)="consoleEvent($event)" [id]="movie.id" [title]="movie.title"
-    [description]="movie.description" [rating]="movie.rating"></app-tvshow-tile-component>
-}

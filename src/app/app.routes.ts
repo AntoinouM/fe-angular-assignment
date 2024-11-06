@@ -1,16 +1,16 @@
 import { Routes } from '@angular/router';
-import { TvshowsComponentComponent } from './shared/components/tvshows-component/tvshows-component.component';
-import { MoviesComponentComponent } from './shared/components/movies-component/movies-component.component';
+import { TvshowsComponent } from './shared/components/tvshows/tvshows.component';
+import { MoviesComponent } from './shared/components/movies/movies.component';
 
 export const routes: Routes = [
     {
         path: '',
         title: 'App TV Shows',
-        component: TvshowsComponentComponent,
+        component: TvshowsComponent,
       },
       {
         path: 'movies',
         title: 'App Movies',
-        component: MoviesComponentComponent,
+        component: MoviesComponent,
       },
 ];
