@@ -1,31 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TmdbApiService } from '../../../core/services/tmdb-api.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-movie-preview',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './movie-preview.component.html',
-  styleUrls: ['./movie-preview.component.scss']
+  styleUrl: './movie-preview.component.scss'
 })
-export class MoviePreviewComponent implements OnInit {
-  configurationData: any;
+export class MoviePreviewComponent {
 
-  private tmdbService = inject(TmdbApiService);
-
-  ngOnInit(): void {
-    this.tmdbService.getConfiguration().subscribe({
-      next: (data) => {
-        this.configurationData = data;
-        console.log('Configuration data:', data);
-      },
-      error: (error) => {
-        console.error('Error fetching configuration data:', error);
-      },
-      complete: () => {
-        console.log('Data fetch complete.');
-      }
-    });
-  }
 }
