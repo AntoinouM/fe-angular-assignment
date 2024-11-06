@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Media } from '../../core/models/media.model';
+import { Media } from '../../../core/models/media.model';
 
 @Component({
   selector: 'app-medias-component',
