@@ -69,6 +69,7 @@ $line-height-phone: (
 
 * {
   font-family: "Montserrat", sans-serif;
+  text-decoration: none;
 }
 
 @mixin font-classes($sizes, $line-height) {
