@@ -1,1 +1,5 @@
 <p>movie-preview works!</p>
+<div *ngIf="configurationData">
+    <h2>TMDb Configuration Data</h2>
+    <pre>{{ configurationData | json }}</pre>
+</div>
