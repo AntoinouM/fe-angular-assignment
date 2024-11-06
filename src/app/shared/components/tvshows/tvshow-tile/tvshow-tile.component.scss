@@ -1,0 +1,9 @@
+@import "../../../../../styles.scss";
+
+.tile {
+  border: $border-width solid $celeste-blue;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
