@@ -13,13 +13,13 @@ import { TmdbApiService } from '../../../core/services/tmdb-api.service';
 export class MoviePreviewComponent implements OnInit {
   configurationData: any;
 
-  private tmdbService = inject(TmdbApiService); // Use Angular's inject function
+  private tmdbService = inject(TmdbApiService);
 
   ngOnInit(): void {
     this.tmdbService.getConfiguration().subscribe(
       (data) => {
         this.configurationData = data;
-        console.log('Configuration data:', data); // Log the data for debugging
+        console.log('Configuration data:', data);
       },
       (error) => {
         console.error('Error fetching configuration data:', error);
