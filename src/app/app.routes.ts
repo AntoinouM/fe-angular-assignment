@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { TvshowsComponent } from './shared/components/tvshows/tvshows.component';
 import { MoviesComponent } from './shared/components/movies/movies.component';
+import { DetailedViewComponent } from './shared/components/detailed-view/detailed-view.component';
 
 export const routes: Routes = [
     {
@@ -13,4 +14,6 @@ export const routes: Routes = [
         title: 'App Movies',
         component: MoviesComponent,
       },
+      { path: ':mediaId', 
+        component: DetailedViewComponent },
 ];

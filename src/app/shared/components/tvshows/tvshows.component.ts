@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Media } from '../../../core/models/media.model';
 import { TvshowTileComponent } from './tvshow-tile/tvshow-tile.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tvshows',
@@ -10,6 +11,9 @@ import { TvshowTileComponent } from './tvshow-tile/tvshow-tile.component';
   styleUrl: './tvshows.component.scss'
 })
 export class TvshowsComponent {
+
+  constructor(private router: Router) {}
+
   dataTest: Media[] = [
     {
       id: '1',
@@ -75,5 +79,6 @@ export class TvshowsComponent {
 
   consoleEvent(id: string) {
     console.log(`${id} has been clicked!`)
+    this.router.navigate([`/${id}`]);
   }
 }
