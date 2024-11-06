@@ -1,29 +1,23 @@
-// movie-preview.component.ts
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TmdbApiService } from '../../../core/services/tmdb-api.service';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-@Component({
-  selector: 'app-movie-preview',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './movie-preview.component.html',
-  styleUrls: ['./movie-preview.component.css']
-})
-export class MoviePreviewComponent implements OnInit {
-  configurationData: any;
+import { MoviePreviewComponent } from './movie-preview.component';
 
-  private tmdbService = inject(TmdbApiService);
+describe('MoviePreviewComponent', () => {
+  let component: MoviePreviewComponent;
+  let fixture: ComponentFixture<MoviePreviewComponent>;
 
-  ngOnInit(): void {
-    this.tmdbService.getConfiguration().subscribe(
-      (data) => {
-        this.configurationData = data;
-        console.log('Configuration data:', data);
-      },
-      (error) => {
-        console.error('Error fetching configuration data:', error);
-      }
-    );
-  }
-}
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [MoviePreviewComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(MoviePreviewComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
