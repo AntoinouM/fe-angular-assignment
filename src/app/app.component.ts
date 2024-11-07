@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { TitleComponent } from './shared/components/title/title.component';
-import { MoviePreviewComponent } from './shared/components/movie-preview/movie-preview.component';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { SearchComponent } from './shared/components/search/search.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TitleComponent, MoviePreviewComponent],
+  imports: [RouterOutlet, RouterLink, SearchComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

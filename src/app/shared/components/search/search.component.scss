@@ -1,0 +1,11 @@
+@import "../../../../styles.scss";
+
+.search {
+  outline: none;
+  border: $border-width $smoke-white solid;
+  border-radius: $border-radius;
+  color: $primary;
+  padding: $spacer-2 $spacer-3;
+  margin-top: $spacer-5;
+  margin-bottom: $spacer-5;
+}
