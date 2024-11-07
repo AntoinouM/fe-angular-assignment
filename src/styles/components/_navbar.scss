@@ -122,6 +122,21 @@
     height: $navbar-height;
     background-color: $grey-90;
 
+    & .spinner {
+      $spinner-size: 24px;
+
+      width: $spinner-size;
+      height: $spinner-size;
+      position: absolute;
+      top: 50%;
+      transform: translate(-120%, -50%);
+
+      & .spinner--loading {
+        border: 2px $primary solid;
+        border-bottom: 2px $grey-70 solid;
+      }
+    }
+
     &__form {
       display: flex;
       align-items: center;
