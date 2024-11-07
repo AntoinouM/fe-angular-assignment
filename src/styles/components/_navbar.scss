@@ -7,11 +7,40 @@
   left: 0;
   padding: $spacer-3;
   margin-bottom: $spacer-6;
+  background-color: $secondary;
 
   // display
   display: flex;
   align-items: center;
   gap: $spacer-6;
+
+  &__wrapper {
+    // display
+    display: flex;
+    align-items: center;
+    gap: $spacer-6;
+
+    @include breakpoint-max-width(s) {
+      pointer-events: none;
+      visibility: hidden;
+      transform: translate(101%);
+      transition: transform 0.3s ease-out, display 0.2s ease-in;
+    }
+
+    &--mobile {
+      pointer-events: all;
+      visibility: visible;
+      flex-direction: column;
+      position: fixed;
+      background-color: $secondary;
+      top: $navbar-height;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      padding-top: $spacer-6;
+      transform: translate(0);
+    }
+  }
 
   &__logo {
     margin-right: $spacer-6;
@@ -36,11 +65,46 @@
       &--stroked {
         fill: none;
       }
+
+      @include breakpoint-max-width(md) {
+        display: none;
+      }
     }
   }
 
-  .svg__path--stroked {
+  & .svg__path--stroked {
     stroke: $primary;
+  }
+
+  &__burger {
+    display: none;
+    align-self: center;
+    position: inherit;
+    right: $spacer-3;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.25s ease-in-out;
+
+    @include breakpoint-max-width(s) {
+      display: block;
+    }
+
+    &--opened {
+      transform: rotate(90deg) scale(0.7);
+    }
+
+    & .burger__svg {
+      $height: $navbar-height * 0.8;
+      height: $height;
+      width: $height;
+
+      & .svg__path--stroked {
+        stroke: $primary;
+        stroke-width: 2;
+        stroke-linecap: round;
+      }
+    }
   }
 
   &__searchToggle {
