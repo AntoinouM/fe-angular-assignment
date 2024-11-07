@@ -49,6 +49,7 @@
   &__item {
     cursor: pointer;
     width: fit-content;
+    background-color: inherit;
 
     //display
     display: flex;
@@ -74,6 +75,8 @@
 
   & .svg__path--stroked {
     stroke: $primary;
+    stroke-width: 2;
+    stroke-linecap: round;
   }
 
   &__burger {
@@ -98,17 +101,62 @@
       $height: $navbar-height * 0.8;
       height: $height;
       width: $height;
-
-      & .svg__path--stroked {
-        stroke: $primary;
-        stroke-width: 2;
-        stroke-linecap: round;
-      }
     }
   }
 
   &__searchToggle {
     outline: none;
     border: none;
+  }
+
+  .search {
+    outline: none;
+    border: none;
+    border-bottom: $border-width rgba($smoke-white, 0.5) solid;
+    color: $primary;
+    padding: $spacer-2 $spacer-3;
+    position: inherit;
+    top: $navbar-height;
+    right: 0;
+    left: 0;
+    height: $navbar-height;
+    background-color: $grey-90;
+
+    &__form {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    & .form {
+      &__field {
+        display: flex;
+        justify-content: space-between;
+        padding-inline: $spacer-9;
+        width: 100%;
+
+        & .field {
+          &__input {
+            border: none;
+            outline: none;
+            padding: $spacer-2 $spacer-1;
+            width: 300px;
+            background-color: inherit;
+          }
+
+          &__button {
+            border: none;
+            background-color: inherit;
+
+            & .button__svg {
+              align-self: center;
+              fill: none;
+              width: 16px;
+              height: 16px;
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -10,7 +10,6 @@
 @import "./styles/components/navbar";
 
 * {
-  background-color: $secondary;
   color: $primary;
   box-sizing: border-box;
 }
@@ -18,4 +17,9 @@
 body {
   margin: 0;
   width: 100%;
+  background-color: $secondary;
+}
+
+.hidden {
+  visibility: hidden;
 }
