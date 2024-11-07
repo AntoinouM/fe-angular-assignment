@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://reqres.in/api/users',
+  apiUrl: 'https://api.themoviedb.org/3',
   apiKey: import.meta.env.NODE_ENV,
 };

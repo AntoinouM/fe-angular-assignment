@@ -10,18 +10,19 @@ import { TmdbApiService } from '../../../core/services/tmdb-api.service';
 })
 export class MoviePreviewComponent implements OnInit {
 
-  constructor(private data: TmdbApiService) {}
+  constructor(private api: TmdbApiService) {}
+
+  topRateMovies: any = [];
 
   ngOnInit(): void {
-    this.getExampleData();
+    this.fetchTopRated()
   }
 
-  exampleData: any;
-  getExampleData() {
-    this.data.getData().subscribe({
+  async fetchTopRated(): Promise<void> {
+    this.api.getTopRated(1, 'movie').subscribe({
       next: (data) => {
-        this.exampleData = data;
-        console.log('Configuration data:', data);
+        console.log('Configuration data:', data.results);
+        this.topRateMovies = data.results;
       },
       error: (error) => {
         console.error('Error fetching configuration data:', error);
@@ -31,4 +32,5 @@ export class MoviePreviewComponent implements OnInit {
       }
     })
   }
+
 }
