@@ -6,7 +6,16 @@
 @import "./styles/mixins";
 @import "./styles/variables";
 
+// components
+@import "./styles/components/navbar";
+
 * {
   background-color: $secondary;
   color: $primary;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 100%;
 }

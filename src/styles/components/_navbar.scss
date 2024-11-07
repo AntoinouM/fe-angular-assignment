@@ -1,0 +1,47 @@
+.navbar {
+  border-bottom: $border-width solid rgba($primary, 0.5);
+  height: $navbar-height;
+  width: 100%;
+  padding: $spacer-3;
+  margin-bottom: $spacer-6;
+
+  // display
+  display: flex;
+  align-items: center;
+  gap: $spacer-6;
+
+  &__logo {
+    margin-right: $spacer-6;
+  }
+
+  &__item {
+    cursor: pointer;
+    width: fit-content;
+
+    //display
+    display: flex;
+    gap: $spacer-2;
+    align-items: center;
+  }
+
+  .item {
+    &__svg {
+      width: 24px;
+      height: 24px;
+      fill: $primary;
+
+      &--stroked {
+        fill: none;
+      }
+    }
+  }
+
+  .svg__path--stroked {
+    stroke: $primary;
+  }
+
+  &__searchToggle {
+    outline: none;
+    border: none;
+  }
+}
