@@ -1,6 +1,7 @@
 @import "../styles.scss";
 
-.navbar {
-  display: flex;
-  gap: $spacer-4;
+main {
+  margin-top: $navbar-height * 1.5;
+  padding-left: $spacer-7;
+  padding-bottom: $spacer-7;
 }
