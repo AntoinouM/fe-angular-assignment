@@ -14,7 +14,7 @@ export class TmdbApiService {
 
   constructor(private http:HttpClient) {}
 
-  // functions for specific request
+  // FUNCTIONS CALL
   // const url = 'https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1';
   // const url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
   getTopRated(page: number, mediaType: string): Observable<any> {
@@ -26,7 +26,7 @@ export class TmdbApiService {
   // call to specific id
   getMedia(id: string) {}
 
-
+  // HELPERS
   // private functions to control request
   private buildHeaders(key: string): HttpHeaders {
     const headers = new HttpHeaders({
