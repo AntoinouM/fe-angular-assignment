@@ -10,11 +10,11 @@ export const routes: Routes = [
       component: DashboardComponent,
     },
     {
-      path: '/tvshow/:id',
+      path: 'tvshow/:id',
       component: TvshowDetailComponent,
     },
     {
-      path: '/movie/:id',
+      path: 'movie/:id',
       component: MovieDetailComponent,
     }
 
