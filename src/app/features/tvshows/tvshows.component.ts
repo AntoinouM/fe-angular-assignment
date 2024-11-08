@@ -11,4 +11,8 @@ import { MediaCardComponent } from '../../shared/media-card/media-card.component
 export class TvshowsComponent {
 
   @Input() topRated: any[] = [];
+
+  handleClickedMedia(id: number) {
+    console.log(id)
+  }
 }

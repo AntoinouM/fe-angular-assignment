@@ -1,6 +1,6 @@
 <div class="card">
     @if (imageSource) {
-    <img class="card__image" [src]="imageSource" [alt]="name">
+    <img class="card__image" [src]="imageSource" [alt]="name" (click)="emitClicked(id)">
     }
     <div class="card__info-wrapper">
         <h4 class="info__name">{{ name }}</h4>
