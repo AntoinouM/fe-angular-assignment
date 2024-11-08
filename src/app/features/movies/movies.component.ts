@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { MovieTileComponent } from './movie-tile/movie-tile.component';
+import { MediaCardComponent } from '../../shared/media-card/media-card.component';
 
 @Component({
   selector: 'movies',
   standalone: true,
-  imports: [MovieTileComponent],
+  imports: [MediaCardComponent],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss'
 })

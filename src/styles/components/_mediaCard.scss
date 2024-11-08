@@ -1,0 +1,30 @@
+.card {
+  display: flex;
+  gap: 60px;
+
+  &__image {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  &__info-wrapper {
+    & .info__name,
+    .info__date {
+      padding: 0;
+      margin: 0;
+    }
+
+    & .info__rating {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+      align-items: end;
+
+      & .rating__vote-count {
+        font-size: 0.9rem;
+        font-style: italic;
+      }
+    }
+  }
+}

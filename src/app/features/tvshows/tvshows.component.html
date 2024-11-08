@@ -1,3 +1,7 @@
+<h3>Top rated TV-SHOWS</h3>
+
 @for (show of topRated; track show.id) {
-<tv-show-tile [show]="show"></tv-show-tile>
+<app-media-card [imageSource]="show.imageSrc" [name]="show.name" [rating]="show.rating" [voteCount]="show.vote_count"
+    [date]="show.first_air_date">
+</app-media-card>
 }

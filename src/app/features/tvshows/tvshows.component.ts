@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { TvshowTileComponent } from './tvshow-tile/tvshow-tile.component';
+import { MediaCardComponent } from '../../shared/media-card/media-card.component';
 
 @Component({
   selector: 'tvshows',
   standalone: true,
-  imports: [TvshowTileComponent],
+  imports: [MediaCardComponent],
   templateUrl: './tvshows.component.html',
   styleUrl: './tvshows.component.scss'
 })

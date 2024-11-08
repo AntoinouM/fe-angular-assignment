@@ -32,9 +32,9 @@ export class DashboardComponent {
     this.api.getTopRated(1, mediaType).subscribe({
       next: (response) => {
         const tempArray = response.results.map((item: any) => ({
-            imgSrc: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : null,
+            imageSrc: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : null,
             ...item,
-            rating: Math.floor(item.vote_average * 10 * 100) * 0.01,
+            rating: Math.round(item.vote_average * 100) / 100,
         }));
         array.update(value => tempArray.slice(0, 10));
       },
