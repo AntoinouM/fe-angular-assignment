@@ -8,10 +8,16 @@
 
 // components
 @import "./styles/components/navbar";
+@import "./styles/components/mediaCard";
+
+// angular material
+@import "./styles/m3-theme";
 
 * {
   color: $primary;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {

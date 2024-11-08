@@ -1,7 +1,5 @@
 @import "../styles.scss";
 
 .app__main {
-  margin-top: $navbar-height * 1.5;
-  padding-left: $spacer-7;
-  padding-bottom: $spacer-7;
+  padding-inline: $spacer-7;
 }

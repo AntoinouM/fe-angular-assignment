@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DetailedViewComponent } from './detailed-view.component';
+import { MediaCardComponent } from './media-card.component';
 
-describe('DetailedViewComponent', () => {
-  let component: DetailedViewComponent;
-  let fixture: ComponentFixture<DetailedViewComponent>;
+describe('MediaCardComponent', () => {
+  let component: MediaCardComponent;
+  let fixture: ComponentFixture<MediaCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DetailedViewComponent]
+      imports: [MediaCardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DetailedViewComponent);
+    fixture = TestBed.createComponent(MediaCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
