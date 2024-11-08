@@ -3,11 +3,13 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { TmdbApiService } from '../../core/services/tmdb-api.service';
 import { HeroComponent } from '../../shared/hero/hero.component';
 import { Hero } from '../../core/models/hero.model';
+import { OverviewComponent } from '../../shared/overview/overview.component';
+import { Actor } from '../../core/models/actor.model';
 
 @Component({
   selector: 'app-tvshow-detail',
   standalone: true,
-  imports: [HeroComponent],
+  imports: [HeroComponent, OverviewComponent],
   templateUrl: './tvshow-detail.component.html',
   styleUrl: './tvshow-detail.component.scss'
 })
@@ -26,6 +28,7 @@ export class TvshowDetailComponent {
     date: 0,
     description: '',
   })
+  cast: WritableSignal<Actor[]> = signal([])
 
   
   constructor(private route: ActivatedRoute, private api: TmdbApiService) {}
@@ -57,13 +60,22 @@ export class TvshowDetailComponent {
   fetchCastInfo(mediaType: string, id: number): void {
     this.api.getCredits(mediaType, id).subscribe({
       next: (response) => {
-        this.cast_data.update(() => response);
-      },
+        this.cast_data.update(() => response.cast);
+        this.cast_data().forEach((actor: any) => {
+          this.cast().push({
+            name: actor.name,
+            pictureUrl: actor.profile_path,
+            character: actor.character
+          })
+        }
+      )},
       error: (error) => {
         console.error('Error fetching configuration data:', error);
       }
     })
   }
+
+  getCast() {}
 
   generateHero(data: any): Hero {
     return {

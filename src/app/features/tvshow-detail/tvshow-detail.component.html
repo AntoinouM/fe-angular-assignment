@@ -1,3 +1,4 @@
-<app-hero class="hero__wrapper" [data]="hero()"></app-hero>
-
-<p>tvshow-detail works!</p>
+<div class="dtail__wrapper">
+    <app-hero class="hero__wrapper" [data]="hero()"></app-hero>
+    <app-overview class="overview__wrapper" [data]="data()" [dataCast]="cast()" [media]="media"></app-overview>
+</div>

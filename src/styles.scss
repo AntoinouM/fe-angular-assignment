@@ -10,6 +10,7 @@
 @import "./styles/components/navbar";
 @import "./styles/components/mediaCard";
 @import "./styles/components/hero";
+@import "./styles/components/overview";
 
 // angular material
 @import "./styles/m3-theme";
@@ -29,4 +30,10 @@ body {
 
 .hidden {
   visibility: hidden;
+}
+
+.list--unstyled {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
