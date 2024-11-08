@@ -1,0 +1,6 @@
+@if (show) {
+<h4>{{ show.name }}</h4>
+@if (show.imageSrc) {
+<img [src]="show.imageSrc" [alt]="show.name">
+}
+}
