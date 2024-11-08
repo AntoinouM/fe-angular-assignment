@@ -54,7 +54,7 @@
                 <p class="list__label">Languages</p>
                 <div class="list__value-container">
                     @for(language of data().spoken_languages; track $index) {
-                    <p class="list__value">{{ language.name }}</p>
+                    <p class="list__value">{{ language.english_name }}</p>
                     }
                 </div>
             </li>

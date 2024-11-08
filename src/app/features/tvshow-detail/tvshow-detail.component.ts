@@ -1,4 +1,5 @@
 import { Component, signal, WritableSignal } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
 import { TmdbApiService } from '../../core/services/tmdb-api.service';
 import { HeroComponent } from '../../shared/hero/hero.component';
@@ -31,7 +32,7 @@ export class TvshowDetailComponent {
   cast: WritableSignal<Actor[]> = signal([])
 
   
-  constructor(private route: ActivatedRoute, private api: TmdbApiService) {}
+  constructor(private route: ActivatedRoute, private api: TmdbApiService, private location: Location) {}
 
    ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -87,6 +88,10 @@ export class TvshowDetailComponent {
       date: new Date(data.first_air_date).getFullYear(),
       description: data.overview,
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }
