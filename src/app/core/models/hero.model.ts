@@ -4,6 +4,6 @@ export interface Hero {
     vote_count: number,
     season_count: number | null,
     imageSource: string,
-    date: string,
+    date: number,
     description: string,
 }

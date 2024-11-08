@@ -23,7 +23,7 @@ export class TvshowDetailComponent {
     vote_count: 0,
     season_count: null,
     imageSource: '',
-    date: '',
+    date: 0,
     description: '',
   })
 
@@ -72,7 +72,7 @@ export class TvshowDetailComponent {
       vote_count: data.vote_count,
       season_count: data.number_of_seasons,
       imageSource: `https://image.tmdb.org/t/p/original${data.backdrop_path}`,
-      date: data.first_air_date,
+      date: new Date(data.first_air_date).getFullYear(),
       description: data.overview,
     }
   }

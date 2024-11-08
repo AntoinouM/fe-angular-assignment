@@ -26,8 +26,11 @@
   background-color: $secondary;
 
   @include breakpoint-max-width(md) {
-    height: 35rem;
-    padding-bottom: 15rem;
+    padding-bottom: 10rem;
+  }
+
+  @include breakpoint-max-width(s) {
+    padding-bottom: 0;
   }
 
   &__backdrop {
