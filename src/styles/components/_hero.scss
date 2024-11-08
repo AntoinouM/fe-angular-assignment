@@ -26,7 +26,8 @@
   background-color: $secondary;
 
   @include breakpoint-max-width(md) {
-    height: 25rem;
+    height: 35rem;
+    padding-bottom: 15rem;
   }
 
   &__backdrop {
@@ -34,7 +35,7 @@
     top: 0;
     right: 0;
     display: block;
-    width: 71.1%;
+    width: 65.1%;
     height: 100%;
 
     @include breakpoint-max-width(md) {
@@ -47,13 +48,13 @@
     & .backdrop__image {
       position: relative;
       display: inline-block;
-      width: 100%;
+      max-width: none;
+      height: 100%;
       object-fit: cover;
       object-position: right;
 
       @include breakpoint-max-width(md) {
-        max-width: none;
-        height: 100%;
+        width: 100%;
       }
     }
 
@@ -91,36 +92,38 @@
     z-index: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 55%;
-    height: 100%;
-    padding: 5rem 4rem;
-    // padding: 0 1.5rem 1.5rem;
+    gap: $spacer-2;
+    align-items: left;
+    justify-content: center;
+    padding-inline: $spacer-12 $spacer-10;
+    width: 65%;
 
-    // @media (min-width: $breakpoint-small) {
-    //   padding: 0 4rem 4rem;
-    // }
+    @include breakpoint-max-width(lg) {
+      padding: $spacer-10 $spacer-8;
+    }
 
-    // @media (min-width: $breakpoint-medium) {
-    //   position: absolute;
-    //   top: 0;
-    //   bottom: 0;
-    //   left: 0;
-    //   z-index: 1;
-    //   display: flex;
-    //   align-items: center;
-    //   width: 55%;
-    //   height: 100%;
-    //   padding: 5rem 4rem;
-    // }
+    @include breakpoint-max-width(md) {
+      position: relative;
+      padding: $spacer-6 $spacer-4;
+      width: 100%;
+    }
 
-    // @media (min-width: $breakpoint-large) {
-    //   padding-right: 5rem;
-    //   padding-left: 5rem;
-    // }
+    & .panel__info {
+      display: flex;
+      flex-direction: column;
+      gap: $spacer-4;
+      background-color: rgba($secondary, 0.3);
+      border-radius: $border-radius-xl;
+    }
 
-    // @media (min-width: $breakpoint-xlarge) {
-    //   width: 43%;
-    // }
+    & .info__meta {
+      display: flex;
+      gap: $spacer-3;
+      color: $grey-60;
+
+      & * {
+        color: inherit;
+      }
+    }
   }
 }

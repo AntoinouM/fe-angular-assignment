@@ -1,4 +1,4 @@
-import { Component, Input, WritableSignal } from '@angular/core';
+import { Component, input, Input, WritableSignal } from '@angular/core';
 import { Hero } from '../../core/models/hero.model';
 
 @Component({
@@ -10,10 +10,10 @@ import { Hero } from '../../core/models/hero.model';
 })
 export class HeroComponent {
 
-  @Input() data: any = {};
+  data = input<any>({})
 
   ngOnChanges() {
-    console.log(this.data)
+    console.log(this.data())
   }
 
 }
