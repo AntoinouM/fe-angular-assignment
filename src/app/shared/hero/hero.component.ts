@@ -11,6 +11,9 @@ import { Hero } from '../../core/models/hero.model';
 export class HeroComponent {
 
   data = input<any>({})
+  get year(): number | null {
+    return this.data().length >= 4 ? new Date(this.data().date).getFullYear() : null;
+  }
 
   ngOnChanges() {
     console.log(this.data())
