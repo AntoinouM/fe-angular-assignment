@@ -1,7 +1,5 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges, OnDestroy, input, signal } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnDestroy, input, signal } from '@angular/core';
 import { trigger, transition, animate, style } from '@angular/animations';
-import { Subscription } from 'rxjs';
-import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-carousel',
@@ -31,45 +29,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('carouselContainer') carouselContainer!: ElementRef;
 
-//implements AfterViewInit, OnChanges, OnDestroy
-
   ngAfterViewInit() {
     this.container.update(() => this.carouselContainer.nativeElement)
     this.container()?.addEventListener('scroll', () => this.updateNavigation())
-      //   setTimeout(() => {
-  //     this.resetCarousel();
-  //     this.updateNavigation();
-  //   }, 300); // Increased timeout to ensure elements are fully rendered
   }
-
-  // @ViewChild('carouselContainer') carouselContainer!: ElementRef;
-
-  // private routerSubscription!: Subscription;
-
-  // constructor(private router: Router) {
-  //   // Add window resize listener to update navigation buttons
-  //   window.addEventListener('resize', this.updateNavigation.bind(this));
-  // }
-
-  // ngAfterViewInit() {
-  //   setTimeout(() => {
-  //     this.resetCarousel();
-  //     this.updateNavigation();
-  //   }, 300); // Increased timeout to ensure elements are fully rendered
-
-  //   // Subscribe to router events to reset the carousel on route change
-  //   this.routerSubscription = this.router.events.subscribe(event => {
-  //     if (event instanceof NavigationEnd) {
-  //       this.resetCarousel();
-  //     }
-  //   });
-  // }
-
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if (changes['items'] && !changes['items'].firstChange) {
-  //     this.resetCarousel();
-  //   }
-  // }
 
   prevSlide() {
     if (this.carouselContainer.nativeElement.scrollLeft > 0) {
@@ -101,26 +64,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     this.canNavigateRight.set(this.container()!.scrollWidth > this.container()!.scrollLeft + this.container()!.clientWidth + buffer);
   }
 
-  // private resetCarousel() {
-  //   if (this.carouselContainer) {
-  //     this.carouselContainer.nativeElement.scrollTo({
-  //       left: 0,
-  //       behavior: 'smooth'
-  //     });
-
-  //     setTimeout(() => {
-  //       this.updateNavigation();
-  //     }, 300);
-  //   } else {
-  //     console.warn('Carousel container not found.');
-  //   }
-  // }
-
   ngOnDestroy() {
-    // if (this.routerSubscription) {
-    //   this.routerSubscription.unsubscribe();
-    // }
-    // window.removeEventListener('resize', this.updateNavigation.bind(this));
     this.container()?.removeEventListener('scroll', ()=>{});
   }
 }
