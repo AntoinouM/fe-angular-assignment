@@ -1,3 +1,4 @@
 - [ ] one component 'media' and 'media-detail' instead of tv + movie
 - [ ] overview-list component instead of if statements in overview component
 - [ ] unsubscribe to all Observables ngOnDestroy
+- [ ] when go back from detailed view, retrieve previous state (active tab and search)

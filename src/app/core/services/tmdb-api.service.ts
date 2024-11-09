@@ -37,12 +37,20 @@ export class TmdbApiService {
     return this.http.get(`${this.apiUrl}/${mediaType}/${id}/credits`, { headers, params })
   }
 
+  // search
+  search(query: string): Observable<any> {
+    //url = 'https://api.themoviedb.org/3/search/movie?query=_testquery_&include_adult=false&language=en-US&page=1';
+    const headers = this.buildHeaders(this.apiKey);
+    const params = this.buildParams({});
+    return this.http.get(`${this.apiUrl}/search/movie?query=${query}`, { headers, params })
+  }
+
   // get external id
   getExternalId(id: any): Observable<any> {
     // https://api.themoviedb.org/3/find/external_id?external_source='
     const headers = this.buildHeaders(this.apiKey);
     const params = this.buildParams({});
-    return this.http.get(`https://api.themoviedb.org/3/find/${id}?external_source=imdb_id`, { headers, params })
+    return this.http.get(`${this.apiUrl}/find/${id}?external_source=imdb_id`, { headers, params })
   }
 
   // HELPERS
