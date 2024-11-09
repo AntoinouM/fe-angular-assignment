@@ -63,8 +63,8 @@ export class MovieDetailComponent {
   fetchData(mediaType: string, id: number): void {
     this.api.getTvShow(mediaType, id).subscribe({
       next: (response) => {
-        this.data.update( () => response);
-        this.hero.update( () => this.generateHero(response));
+        this.data.set(response);
+        this.hero.set(this.generateHero(response));
       },
       error: (error) => {
         console.error('Error fetching configuration data:', error);
@@ -75,7 +75,7 @@ export class MovieDetailComponent {
   fetchCastInfo(mediaType: string, id: number): void {
     this.api.getCredits(mediaType, id).subscribe({
       next: (response) => {
-        this.cast_data.update(() => response.cast);
+        this.cast_data.set(response.cast);
         this.cast_data().forEach((actor: any) => {
           this.cast().push({
             name: actor.name,

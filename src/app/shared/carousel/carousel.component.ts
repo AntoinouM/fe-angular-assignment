@@ -30,7 +30,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   @ViewChild('carouselContainer') carouselContainer!: ElementRef;
 
   ngAfterViewInit() {
-    this.container.update(() => this.carouselContainer.nativeElement)
+    this.container.set(this.carouselContainer.nativeElement)
     this.container()?.addEventListener('scroll', () => this.updateNavigation())
   }
 

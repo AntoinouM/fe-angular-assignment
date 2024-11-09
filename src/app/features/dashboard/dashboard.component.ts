@@ -36,7 +36,7 @@ export class DashboardComponent {
             ...item,
             rating: Math.round(item.vote_average * 100) / 100,
         }));
-        array.update(value => tempArray.slice(0, 10));
+        array.set(tempArray.slice(0, 10));
       },
       error: (error) => {
         console.error('Error fetching configuration data:', error);
