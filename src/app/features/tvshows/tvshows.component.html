@@ -1,6 +1,5 @@
+@if(isSearchEmpty()) {
 <h3>Top rated TV-SHOWS</h3>
-
-
 <div class="top-rated__wrapper">
     @for (show of topRated(); track show.id) {
     <app-media-card (clickedItemEvent)="handleClickedMedia($event)" [imageSource]="show.imageSrc" [name]="show.name"
@@ -8,3 +7,7 @@
     </app-media-card>
     }
 </div>
+}
+@if(!isSearchEmpty()) {
+<app-search-view [media]="media" [searchResult]="searchResult()"></app-search-view>
+}

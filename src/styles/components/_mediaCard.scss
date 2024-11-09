@@ -1,11 +1,37 @@
 .card {
+  width: clamp(140px, 17%, 200px);
   display: flex;
-  gap: 60px;
+  flex-direction: column;
+  gap: $spacer-2;
+
+  &:hover {
+    cursor: pointer;
+
+    & .card__image,
+    .image--placeholder {
+      transform: scale(1.05);
+    }
+  }
+
+  & .image--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    transition: transform 0.3s linear;
+
+    & svg {
+      width: 80%;
+      height: auto;
+    }
+  }
 
   &__image {
     width: 200px;
     height: auto;
     border-radius: 10px;
+    transition: transform 0.3s linear;
   }
 
   &__info-wrapper {
@@ -15,10 +41,14 @@
       margin: 0;
     }
 
+    .info__date {
+      font-weight: 400;
+    }
+
     & .info__rating {
       display: flex;
-      gap: 12px;
-      margin-top: 12px;
+      gap: $spacer-3;
+      margin-top: $spacer-1;
       align-items: end;
 
       & .rating__vote-count {

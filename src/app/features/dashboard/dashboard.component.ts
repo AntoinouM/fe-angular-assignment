@@ -1,12 +1,12 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TvshowsComponent } from "../tvshows/tvshows.component";
 import { TmdbApiService } from '../../core/services/tmdb-api.service';
 import { MoviesComponent } from '../movies/movies.component';
-import { response } from 'express';
 import { SearchComponent } from '../../shared/search/search.component';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { SearchService } from '../../core/services/search-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,15 +26,19 @@ import { animate, style, transition, trigger } from '@angular/animations';
     ])
   ]
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
   topRatedMovies: WritableSignal<any[]> = signal([]);
   topRatedTvShows: WritableSignal<any[]> = signal([]);
+  isSearchEmpty = signal<boolean>(true);
 
-  constructor(private api: TmdbApiService) {}
+  constructor(private api: TmdbApiService, private searchService: SearchService) {}
 
   ngOnInit() {
     this.loadTopRated();
+    this.searchService.isEmpty$.subscribe(isEmpty => {
+      this.isSearchEmpty.set(isEmpty);
+    });
   }
 
   loadTopRated() {

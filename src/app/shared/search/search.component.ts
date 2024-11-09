@@ -20,6 +20,10 @@ export class SearchComponent implements OnInit {
   constructor(private searchService: SearchService) {}
 
   ngOnInit() {
+    this.searchControl.valueChanges.subscribe((term: string | null) => {
+      this.searchService.checkEmpty(term);
+    });
+
     this.searchControl.valueChanges
       .pipe(
         filter((term): term is string => term !== null && term.length >= 3),
