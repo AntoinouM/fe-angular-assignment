@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-search-view',
@@ -9,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class SearchViewComponent {
 
+  searchResult = signal<any>(undefined);
 }

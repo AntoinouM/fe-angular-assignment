@@ -15,7 +15,6 @@ import { SearchService } from '../../core/services/search-service.service';
 export class SearchComponent implements OnInit {
 
   searchControl = new FormControl('');
-  isSearchEmpty = signal<boolean>(true);
   isSearchLoading = signal<boolean>(false);
 
   constructor(private searchService: SearchService) {}
@@ -23,11 +22,8 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.searchControl.valueChanges
       .pipe(
-        tap((value) => {
-          value!.length > 0 ? this.isSearchEmpty.set(false) : this.isSearchEmpty.set(true)
-        }),
         filter((term): term is string => term !== null && term.length >= 3),
-        tap(()=> {this.isSearchLoading.set(true)}), 
+        tap(()=> {this.isSearchLoading.set(true);}), 
         debounceTime(1000), 
         tap(()=> {this.isSearchLoading.set(false)}), 
         distinctUntilChanged()
@@ -40,6 +36,5 @@ export class SearchComponent implements OnInit {
 
   clearField(inputField: HTMLInputElement) {
     inputField.value = '';
-    this.isSearchEmpty.set(true)
   }
 }

@@ -5,13 +5,26 @@ import { TmdbApiService } from '../../core/services/tmdb-api.service';
 import { MoviesComponent } from '../movies/movies.component';
 import { response } from 'express';
 import { SearchComponent } from '../../shared/search/search.component';
+import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatTabsModule, TvshowsComponent, MoviesComponent, SearchComponent],
+  imports: [MatTabsModule, TvshowsComponent, MoviesComponent, SearchComponent, NavbarComponent],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrl: './dashboard.component.scss',
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class DashboardComponent {
 
