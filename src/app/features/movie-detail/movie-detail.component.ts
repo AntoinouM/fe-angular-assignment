@@ -31,6 +31,7 @@ import { ActorCardComponent } from '../../shared/actor-card/actor-card.component
 export class MovieDetailComponent {
   media: string = 'movie';
   id!: number;
+  externalId: any;
   data: WritableSignal<any> = signal({});
   cast_data: WritableSignal<any> = signal({});
   hero: WritableSignal<Hero> = signal({
@@ -56,7 +57,7 @@ export class MovieDetailComponent {
 
   loadData(id: number) {
     this.fetchData(this.media, id);
-    this.fetchCastInfo(this.media, id)
+    this.fetchCastInfo(this.media, id);
   }
 
   fetchData(mediaType: string, id: number): void {

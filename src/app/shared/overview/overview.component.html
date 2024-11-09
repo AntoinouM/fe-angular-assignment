@@ -23,11 +23,7 @@
             </li>
             <li class="list__element">
                 <p class="list__label">Created By</p>
-                <div class="list__value-container">
-                    @for(creator of data().created_by; track creator.id) {
-                    <p class="list__value">{{ creator.name }}</p>
-                    }
-                </div>
+                <p class="list__value">{{ data().created_by | arrayToList }}</p>
             </li>
             <li class="list__element">
                 <p class="list__label">Seasons</p>
@@ -59,35 +55,27 @@
             </li>
             <li class="list__element">
                 <p class="list__label">Network</p>
-                <div class="list__value-container">
-                    @for(network of data().networks; track network.id) {
-                    <p class="list__value">{{ network.name }}</p>
-                    }
-                </div>
+                <p class="list__value">{{ data().networks | arrayToList }}</p>
             </li>
         </ul>
         }
         @if(media() === 'movie') {
         <ul class="list--unstyled info__list">
             <li class="list__element">
-                <p class="list__label">First Aired</p>
-                <p class="list__value">{{ data().first_air_date | date }}</p>
+                <p class="list__label">Release</p>
+                <p class="list__value">{{ data().release_date | date }}</p>
             </li>
             <li class="list__element">
-                <p class="list__label">Last Aired</p>
-                <p class="list__value">{{ data().last_air_date | date }}</p>
+                <p class="list__label">Revenue</p>
+                <p class="list__value">{{ data().revenue | number }} $</p>
             </li>
             <li class="list__element">
-                <p class="list__label">Created By</p>
-                <div class="list__value-container">
-                    @for(creator of data().created_by; track creator.id) {
-                    <p class="list__value">{{ creator.name }}</p>
-                    }
-                </div>
+                <p class="list__label">Budget</p>
+                <p class="list__value">{{ data().budget | number }} $</p>
             </li>
             <li class="list__element">
-                <p class="list__label">Seasons</p>
-                <p class="list__value">{{ data().number_of_seasons }}</p>
+                <p class="list__label">Duration</p>
+                <p class="list__value">{{ data().runtime | runtime }}</p>
             </li>
             <li class="list__element">
                 <p class="list__label">Genre</p>
@@ -98,14 +86,6 @@
                 </div>
             </li>
             <li class="list__element">
-                <p class="list__label">Episodes</p>
-                <p class="list__value">{{data().number_of_episodes }}</p>
-            </li>
-            <li class="list__element">
-                <p class="list__label">Status</p>
-                <p class="list__value">{{ data().status }}</p>
-            </li>
-            <li class="list__element">
                 <p class="list__label">Languages</p>
                 <div class="list__value-container">
                     @for(language of data().spoken_languages; track $index) {
@@ -114,12 +94,8 @@
                 </div>
             </li>
             <li class="list__element">
-                <p class="list__label">Network</p>
-                <div class="list__value-container">
-                    @for(network of data().networks; track network.id) {
-                    <p class="list__value">{{ network.name }}</p>
-                    }
-                </div>
+                <p class="list__label">Production</p>
+                <p class="list__value">{{ data().production_companies | arrayToList }}</p>
             </li>
         </ul>
         }
