@@ -1,0 +1,106 @@
+.carousel__wrapper {
+  padding: $spacer-6 $spacer-7;
+  padding-top: 0;
+
+  @include breakpoint-max-width(md) {
+    padding: $spacer-3;
+    padding-top: 0;
+  }
+}
+
+.carousel__title {
+  margin-bottom: $spacer-3;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel__nav {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  background: none;
+  border: none;
+  outline: none;
+  padding: $spacer-2;
+  cursor: pointer;
+  text-align: center;
+  background-color: rgba($secondary, 0.7);
+  transition: opacity 0.25s ease, background-color 0.25s ease;
+  z-index: 2;
+
+  // display
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & .nav__svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover,
+  &:focus {
+    background: rgba($primary, 0.2);
+  }
+
+  &[disabled] {
+    cursor: default;
+    opacity: 0;
+  }
+
+  &--left {
+    left: 0;
+  }
+
+  &--right {
+    right: 0;
+  }
+
+  @include breakpoint-max-width(s) {
+    display: none;
+  }
+}
+
+.carousel__inner-wrapper {
+  width: 100%;
+  overflow: hidden;
+  overflow-x: scroll;
+  line-height: 0;
+  white-space: nowrap;
+  transform: translateZ(0);
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 50px;
+
+  @include breakpoint-max-width(lg) {
+    scroll-padding: 40px;
+  }
+  @include breakpoint-max-width(s) {
+    scroll-padding: 15px;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:first-child {
+    margin-left: 24px;
+  }
+
+  &:last-child {
+    margin-left: 24px;
+  }
+}
+
+.carousel__item {
+  display: inline-block;
+  width: clamp(140px, 17%, 200px);
+  scroll-snap-align: start;
+  white-space: normal;
+  vertical-align: top;
+  margin-right: $spacer-3;
+}

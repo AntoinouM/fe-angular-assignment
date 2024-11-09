@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges, OnDestroy, input } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges, OnDestroy, input, signal } from '@angular/core';
 import { trigger, transition, animate, style } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
@@ -21,27 +21,26 @@ import { Router, NavigationEnd } from '@angular/router';
   ]
 })
 
-export class CarouselComponent  {
+export class CarouselComponent implements AfterViewInit, OnDestroy {
 
-  data = input<any>({});
   title = input<string>('');
 
-  ngOnChanges() {
-    console.log(this.data())
-  }
+  canNavigateLeft = signal<boolean>(false);
+  canNavigateRight = signal<boolean>(true);
+  container = signal<HTMLElement | undefined>(undefined);
+
+  @ViewChild('carouselContainer') carouselContainer!: ElementRef;
+
 //implements AfterViewInit, OnChanges, OnDestroy
 
-  // @Input() title!: string;
-  // @Input() id!: number | string;
-  // @Input() exploreLink!: string;
-  // @Input() items: any[] = [];
-  // @Input() canNavigateLeft = false;
-  // @Input() canNavigateRight = true; // Defaulting to true to enable navigation by default
-  // @Input() infoLink!: string;
-  // @Input() isCastCarousel = false;
-  // @Input() isDefaultCarousel = true;
-  // @Input() isExplore = true;
-  // @Input() isDefaultExplore = false;
+  ngAfterViewInit() {
+    this.container.update(() => this.carouselContainer.nativeElement)
+    this.container()?.addEventListener('scroll', () => this.updateNavigation())
+      //   setTimeout(() => {
+  //     this.resetCarousel();
+  //     this.updateNavigation();
+  //   }, 300); // Increased timeout to ensure elements are fully rendered
+  }
 
   // @ViewChild('carouselContainer') carouselContainer!: ElementRef;
 
@@ -72,36 +71,35 @@ export class CarouselComponent  {
   //   }
   // }
 
-  // prevSlide() {
-  //   if (this.carouselContainer.nativeElement.scrollLeft > 0) {
-  //     this.carouselContainer.nativeElement.scrollTo({
-  //       left: this.carouselContainer.nativeElement.scrollLeft - 1000,
-  //       behavior: 'smooth'
-  //     });
-  //     setTimeout(() => {
-  //       this.updateNavigation();
-  //     }, 300);
-  //   }
-  // }
+  prevSlide() {
+    if (this.carouselContainer.nativeElement.scrollLeft > 0) {
+      this.carouselContainer.nativeElement.scrollTo({
+        left: this.carouselContainer.nativeElement.scrollLeft - 1000,
+        behavior: 'smooth'
+      });
+      setTimeout(() => {
+        this.updateNavigation();
+      }, 300);
+    }
+  }
 
-  // nextSlide() {
-  //   if (this.carouselContainer.nativeElement.scrollWidth > this.carouselContainer.nativeElement.scrollLeft + this.carouselContainer.nativeElement.clientWidth) {
-  //     this.carouselContainer.nativeElement.scrollTo({
-  //       left: this.carouselContainer.nativeElement.scrollLeft + 1000,
-  //       behavior: 'smooth'
-  //     });
-  //     setTimeout(() => {
-  //       this.updateNavigation();
-  //     }, 300);
-  //   }
-  // }
+  nextSlide() {
+    if (this.carouselContainer.nativeElement.scrollWidth > this.carouselContainer.nativeElement.scrollLeft + this.carouselContainer.nativeElement.clientWidth) {
+      this.carouselContainer.nativeElement.scrollTo({
+        left: this.carouselContainer.nativeElement.scrollLeft + 1000,
+        behavior: 'smooth'
+      });
+      setTimeout(() => {
+        this.updateNavigation();
+      }, 300);
+    }
+  }
 
-  // private updateNavigation() {
-  //   const container = this.carouselContainer.nativeElement;
-  //   const tolerance = 5; // small tolerance to handle rounding issues
-  //   this.canNavigateLeft = container.scrollLeft > 0;
-  //   this.canNavigateRight = container.scrollWidth > container.scrollLeft + container.clientWidth + tolerance;
-  // }
+  private updateNavigation() {
+    const buffer = 5;
+    this.canNavigateLeft.set(this.container()!.scrollLeft > 0);
+    this.canNavigateRight.set(this.container()!.scrollWidth > this.container()!.scrollLeft + this.container()!.clientWidth + buffer);
+  }
 
   // private resetCarousel() {
   //   if (this.carouselContainer) {
@@ -118,10 +116,11 @@ export class CarouselComponent  {
   //   }
   // }
 
-  // ngOnDestroy() {
-  //   if (this.routerSubscription) {
-  //     this.routerSubscription.unsubscribe();
-  //   }
-  //   window.removeEventListener('resize', this.updateNavigation.bind(this));
-  // }
+  ngOnDestroy() {
+    // if (this.routerSubscription) {
+    //   this.routerSubscription.unsubscribe();
+    // }
+    // window.removeEventListener('resize', this.updateNavigation.bind(this));
+    this.container()?.removeEventListener('scroll', ()=>{});
+  }
 }

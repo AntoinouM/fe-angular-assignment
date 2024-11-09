@@ -9,5 +9,9 @@
 <div class="detail__wrapper" @fade>
     <app-hero class="hero__wrapper" [data]="hero()"></app-hero>
     <app-overview class="overview__wrapper" [data]="data()" [media]="media"></app-overview>
-    <app-carousel [data]="cast()" [title]="'Cast'"></app-carousel>
+    <app-carousel [title]="'Cast'">
+        @for (actor of cast(); track $index) {
+        <app-actor-card class="carousel__item" [actorData]="actor"></app-actor-card>
+        }
+    </app-carousel>
 </div>

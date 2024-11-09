@@ -8,11 +8,12 @@ import { OverviewComponent } from '../../shared/overview/overview.component';
 import { Actor } from '../../core/models/actor.model';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CarouselComponent } from '../../shared/carousel/carousel.component';
+import { ActorCardComponent } from '../../shared/actor-card/actor-card.component';
 
 @Component({
   selector: 'app-tvshow-detail',
   standalone: true,
-  imports: [HeroComponent, OverviewComponent, CarouselComponent],
+  imports: [HeroComponent, OverviewComponent, CarouselComponent, ActorCardComponent],
   templateUrl: './tvshow-detail.component.html',
   styleUrl: './tvshow-detail.component.scss',
   animations: [
