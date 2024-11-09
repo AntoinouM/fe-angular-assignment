@@ -151,3 +151,7 @@ $dark-theme: mat.define-theme(
   font-size: 1.4rem;
   padding: $spacer-3;
 }
+
+.mdc-tab--active {
+  background: rgba($smoke-white, 0.2) !important;
+}

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MediaCardComponent } from '../../shared/media-card/media-card.component';
 
 @Component({
@@ -9,5 +9,5 @@ import { MediaCardComponent } from '../../shared/media-card/media-card.component
   styleUrl: './movies.component.scss'
 })
 export class MoviesComponent {
-  @Input() topRated: any[] = [];
+  topRated = input<any[]>([])
 }

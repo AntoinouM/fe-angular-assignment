@@ -24,7 +24,18 @@ export class TmdbApiService {
   }
 
   // call to specific id
-  getMedia(id: string) {}
+  getTvShow(mediaType: string ,id: number): Observable<any> {
+    const headers = this.buildHeaders(this.apiKey);
+    const params = this.buildParams({ language: this.language })
+    return this.http.get(`${this.apiUrl}/${mediaType}/${id}`, { headers , params })
+  }
+
+  // get credit for specific id
+  getCredits(mediaType: string, id: number): Observable<any> {
+    const headers = this.buildHeaders(this.apiKey);
+    const params = this.buildParams({});
+    return this.http.get(`${this.apiUrl}/${mediaType}/${id}/credits`, { headers, params })
+  }
 
   // HELPERS
   // private functions to control request

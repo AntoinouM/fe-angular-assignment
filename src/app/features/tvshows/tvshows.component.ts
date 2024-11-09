@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MediaCardComponent } from '../../shared/media-card/media-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tvshows',
@@ -10,5 +11,11 @@ import { MediaCardComponent } from '../../shared/media-card/media-card.component
 })
 export class TvshowsComponent {
 
-  @Input() topRated: any[] = [];
+  constructor(private router: Router) {}
+
+  topRated = input<any[]>([])
+
+  handleClickedMedia(id: number) {
+        this.router.navigate([`/tvshow/${id}`])
+  }
 }

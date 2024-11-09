@@ -1,13 +1,15 @@
 <div class="card">
-    @if (imageSource) {
-    <img class="card__image" [src]="imageSource" [alt]="name">
+    @if (imageSource()) {
+    <img class="card__image" [src]="imageSource()" [alt]="name()" (click)="emitClicked(id())">
     }
     <div class="card__info-wrapper">
-        <h4 class="info__name">{{ name }}</h4>
+        <h4 class="info__name">{{ name() }}</h4>
+        @if (year) {
         <h6 class="info__date">{{ year }}</h6>
+        }
         <div class="info__rating">
-            <p class="rating__score">{{ rating }} %</p>
-            <p class="rating__vote-count">{{ voteCount }} votes</p>
+            <p class="rating__score">{{ rating() }} %</p>
+            <p class="rating__vote-count">{{ voteCount() }} votes</p>
         </div>
     </div>
 </div>

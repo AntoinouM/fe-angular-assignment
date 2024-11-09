@@ -1,0 +1,25 @@
+.card__img {
+  width: 100%;
+  margin-bottom: $spacer-2;
+
+  & .image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.card__info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacer-1;
+
+  & .info__name {
+    color: $primary;
+    font-size: 1.05rem;
+  }
+
+  & .info__character {
+    color: rgba($primary, 0.7);
+  }
+}

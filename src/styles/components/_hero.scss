@@ -1,0 +1,140 @@
+// <div class="hero">
+//     <div class="hero__backdrop">
+//         <img alt="{{data.title}}" class="backdrop__image" [src]="data.imageSource" />
+//     </div>
+//     <div class="hero__panel">
+//         <h1 class="panel__name">{{data.title}}</h1>
+//         <div class="panel__info">
+//             <div class="info__meta">
+//                 <div class="meta__rating"></div>
+//                 <div *ngIf="data.vote_count > 0" class="rating__vote-count">{{data.vote_count}} reviews</div>
+//                 <div *ngIf="data.season_count" class="meta__seasons">{{ data.season_count }}</div>
+//                 <div *ngIf="data.date" class="meta__date">{{ data.date }}</div>
+//             </div>
+//             <div class="info__description">{{ data.description }}</div>
+//         </div>
+//     </div>
+// </div>
+
+.hero {
+  height: 35rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $secondary;
+
+  @include breakpoint-max-width(md) {
+    padding-bottom: 10rem;
+  }
+
+  @include breakpoint-max-width(s) {
+    padding-bottom: 0;
+  }
+
+  &__backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 65.1%;
+    height: 100%;
+
+    @include breakpoint-max-width(md) {
+      position: relative;
+      display: flex;
+      flex: 1 1 auto;
+      width: 100%;
+    }
+
+    & .backdrop__image {
+      position: relative;
+      display: inline-block;
+      max-width: none;
+      height: 100%;
+      object-fit: cover;
+      object-position: right;
+
+      @include breakpoint-max-width(md) {
+        width: 100%;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      content: "";
+      background-image: linear-gradient(
+        to right,
+        $secondary 0,
+        transparent 50%,
+        transparent 100%
+      );
+
+      @include breakpoint-max-width(md) {
+        background-image: linear-gradient(
+          to top,
+          rgba($secondary, 1) 0%,
+          rgba($secondary, 0.1) 50%,
+          rgba($secondary, 0.1) 100%
+        );
+      }
+    }
+  }
+
+  &__panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacer-2;
+    align-items: left;
+    justify-content: center;
+    padding-inline: $spacer-12 $spacer-10;
+    width: 65%;
+
+    @include breakpoint-max-width(lg) {
+      padding: $spacer-10 $spacer-8;
+    }
+
+    @include breakpoint-max-width(md) {
+      position: relative;
+      padding: $spacer-6 $spacer-4;
+      width: 100%;
+    }
+
+    & .panel__info {
+      display: flex;
+      flex-direction: column;
+      gap: $spacer-4;
+      background-color: rgba($secondary, 0.3);
+      border-radius: $border-radius-xl;
+
+      @include breakpoint-max-width(md) {
+        background: none;
+
+        & .info__description {
+          display: none;
+        }
+      }
+    }
+
+    & .info__meta {
+      display: flex;
+      gap: $spacer-3;
+      color: $grey-60;
+
+      & * {
+        color: inherit;
+      }
+    }
+  }
+}

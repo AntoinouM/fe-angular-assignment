@@ -5,10 +5,15 @@
 @import "./styles/typography";
 @import "./styles/mixins";
 @import "./styles/variables";
+@import "./styles/svg";
 
 // components
 @import "./styles/components/navbar";
 @import "./styles/components/mediaCard";
+@import "./styles/components/hero";
+@import "./styles/components/overview";
+@import "./styles/components/carousel";
+@import "./styles/components/actor-card";
 
 // angular material
 @import "./styles/m3-theme";
@@ -28,4 +33,10 @@ body {
 
 .hidden {
   visibility: hidden;
+}
+
+.list--unstyled {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }

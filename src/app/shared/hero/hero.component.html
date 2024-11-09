@@ -1,0 +1,23 @@
+<div class="hero">
+    <div class="hero__backdrop">
+        <img alt="{{data().title}}" class="backdrop__image" [src]="data().imageSource" />
+    </div>
+    <div class="hero__panel">
+        <h3 class="panel__name">{{data().title}}</h3>
+        <div class="panel__info">
+            <div class="info__meta">
+                <div class="meta__rating">{{ data().rating }} / 10</div>
+                @if(data().vote_count > 0) {
+                <div class="rating__vote-count">{{data().vote_count}} reviews</div>
+                }
+                @if (data().season_count && data().season_count !== 0) {
+                <div class="meta__seasons">{{ data().season_count }} seasons</div>
+                }
+                @if (data().date) {
+                <div class="meta__date">{{ data().date }}</div>
+                }
+            </div>
+            <div class="info__description">{{ data().description }}</div>
+        </div>
+    </div>
+</div>

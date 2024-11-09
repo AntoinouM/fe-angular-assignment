@@ -1,7 +1,7 @@
 <h3>Top rated TV-SHOWS</h3>
 
-@for (show of topRated; track show.id) {
-<app-media-card [imageSource]="show.imageSrc" [name]="show.name" [rating]="show.rating" [voteCount]="show.vote_count"
-    [date]="show.first_air_date">
+@for (show of topRated(); track show.id) {
+<app-media-card (clickedItemEvent)="handleClickedMedia($event)" [imageSource]="show.imageSrc" [name]="show.name"
+    [rating]="show.rating" [voteCount]="show.vote_count" [date]="show.first_air_date" [id]="show.id">
 </app-media-card>
 }
