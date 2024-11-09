@@ -38,11 +38,11 @@ export class TmdbApiService {
   }
 
   // search
-  search(query: string): Observable<any> {
+  search(mediaType: string, query: string): Observable<any> {
     //url = 'https://api.themoviedb.org/3/search/movie?query=_testquery_&include_adult=false&language=en-US&page=1';
     const headers = this.buildHeaders(this.apiKey);
     const params = this.buildParams({});
-    return this.http.get(`${this.apiUrl}/search/movie?query=${query}`, { headers, params })
+    return this.http.get(`${this.apiUrl}/search/${mediaType}?query=${query}`, { headers, params })
   }
 
   // get external id
