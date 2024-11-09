@@ -1,9 +1,11 @@
-<app-search></app-search>
-<mat-tab-group #tabRef>
-    <mat-tab label="TV-SHOWS">
-        <tvshows [topRated]="topRatedTvShows()"></tvshows>
-    </mat-tab>
-    <mat-tab label="MOVIES">
-        <movies [topRated]="topRatedMovies()"></movies>
-    </mat-tab>
-</mat-tab-group>
+<div class="dashboard__wrapper">
+    <app-search class="search__wrapper"></app-search>
+    <mat-tab-group #tabRef>
+        <mat-tab label="TV-SHOWS">
+            <tvshows [topRated]="topRatedTvShows()"></tvshows>
+        </mat-tab>
+        <mat-tab label="MOVIES">
+            <movies [topRated]="topRatedMovies()"></movies>
+        </mat-tab>
+    </mat-tab-group>
+</div>

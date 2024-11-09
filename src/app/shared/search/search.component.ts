@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import { SearchService } from '../../core/services/search-service.service';
 
@@ -15,19 +15,31 @@ import { SearchService } from '../../core/services/search-service.service';
 export class SearchComponent implements OnInit {
 
   searchControl = new FormControl('');
+  isSearchEmpty = signal<boolean>(true);
+  isSearchLoading = signal<boolean>(false);
 
   constructor(private searchService: SearchService) {}
 
   ngOnInit() {
     this.searchControl.valueChanges
       .pipe(
-        filter((term): term is string => term !== null && term.length >= 3), 
+        tap((value) => {
+          value!.length > 0 ? this.isSearchEmpty.set(false) : this.isSearchEmpty.set(true)
+        }),
+        filter((term): term is string => term !== null && term.length >= 3),
+        tap(()=> {this.isSearchLoading.set(true)}), 
         debounceTime(1000), 
+        tap(()=> {this.isSearchLoading.set(false)}), 
         distinctUntilChanged()
       )
       // Update the service with debounced value
       .subscribe((term: string) => {
         this.searchService.setTerm(term);
       });
+  }
+
+  clearField(inputField: HTMLInputElement) {
+    inputField.value = '';
+    this.isSearchEmpty.set(true)
   }
 }
