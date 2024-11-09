@@ -23,7 +23,13 @@ export class TvshowsComponent implements OnInit {
   media: string = 'tv';
 
   ngOnInit() {
+        this.searchService.resetSearch$.subscribe((bool) => {
+          if (bool) {
+            this.searchResult.set([]);
+          }
+        })
         this.searchService.search$.subscribe((term) => {
+          console.log(term)
           if (term) {
             this.searchQuery(term);
           }

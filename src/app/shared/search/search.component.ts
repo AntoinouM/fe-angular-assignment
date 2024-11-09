@@ -20,9 +20,16 @@ export class SearchComponent implements OnInit {
   constructor(private searchService: SearchService) {}
 
   ngOnInit() {
+    const lastSearchTerm = this.searchService.getLastSearchTerm();
+    this.searchControl.setValue(lastSearchTerm);
+
     this.searchControl.valueChanges.subscribe((term: string | null) => {
       this.searchService.checkEmpty(term);
     });
+
+    this.searchControl.valueChanges.subscribe((term: string | null) => {
+      this.searchService.resetSearch(term);
+    })
 
     this.searchControl.valueChanges
       .pipe(
@@ -30,7 +37,6 @@ export class SearchComponent implements OnInit {
         tap(()=> {this.isSearchLoading.set(true);}), 
         debounceTime(1000), 
         tap(()=> {this.isSearchLoading.set(false)}), 
-        distinctUntilChanged()
       )
       // Update the service with debounced value
       .subscribe((term: string) => {
