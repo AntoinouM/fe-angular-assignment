@@ -36,6 +36,10 @@ export class TvshowsComponent implements OnInit {
         });
   }
 
+  ngOnChanges() {
+    console.log(this.isSearchActive())
+  }
+
   searchQuery(term: string) {
     this.api.search(this.media, term).subscribe({
       next: ((response) => {

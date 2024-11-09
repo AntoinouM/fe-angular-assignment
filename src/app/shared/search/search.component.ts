@@ -46,5 +46,6 @@ export class SearchComponent implements OnInit {
 
   clearField(inputField: HTMLInputElement) {
     inputField.value = '';
+    this.searchService.checkEmpty(inputField.value)
   }
 }
