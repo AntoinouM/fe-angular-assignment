@@ -1,0 +1,2 @@
+- [ ] one component 'media' and 'media-detail' instead of tv + movie
+- [ ] overview-list component instead of if statements in overview component
