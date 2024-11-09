@@ -37,6 +37,14 @@ export class TmdbApiService {
     return this.http.get(`${this.apiUrl}/${mediaType}/${id}/credits`, { headers, params })
   }
 
+  // get external id
+  getExternalId(id: any): Observable<any> {
+    // https://api.themoviedb.org/3/find/external_id?external_source='
+    const headers = this.buildHeaders(this.apiKey);
+    const params = this.buildParams({});
+    return this.http.get(`https://api.themoviedb.org/3/find/${id}?external_source=imdb_id`, { headers, params })
+  }
+
   // HELPERS
   // private functions to control request
   private buildHeaders(key: string): HttpHeaders {
