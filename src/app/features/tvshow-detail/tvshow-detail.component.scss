@@ -1,12 +1,17 @@
 @import "../../../styles.scss";
 
 .detail__nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
-  position: relative;
   height: 36px;
+  background-color: $secondary;
+  z-index: 3;
 }
 
 .detail__wrapper {

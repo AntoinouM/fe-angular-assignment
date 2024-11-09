@@ -1,34 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, filter } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
+import { SpinnerComponent } from '../spinner/spinner.component';
+import { SearchService } from '../../core/services/search-service.service';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [SpinnerComponent, ReactiveFormsModule],
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrl: './search.component.scss'
 })
-export class SearchComponent {
+
+export class SearchComponent implements OnInit {
+
   searchControl = new FormControl('');
+  isSearchLoading = signal<boolean>(false);
 
-  constructor() {
-    this.initializeSearch();
-  }
+  constructor(private searchService: SearchService) {}
 
-  initializeSearch() {
+  ngOnInit() {
+    const lastSearchTerm = this.searchService.getLastSearchTerm();
+    this.searchControl.setValue(lastSearchTerm);
+
+    this.searchControl.valueChanges.subscribe((term: string | null) => {
+      this.searchService.checkEmpty(term);
+    });
+
+    this.searchControl.valueChanges.subscribe((term: string | null) => {
+      this.searchService.resetSearch(term);
+    })
+
     this.searchControl.valueChanges
       .pipe(
-        filter((value): value is string => value !== null),
-        debounceTime(1000),
-        filter((value: string) => value.length >= 3)
+        filter((term): term is string => term !== null && term.length >= 3),
+        tap(()=> {this.isSearchLoading.set(true);}), 
+        debounceTime(1000), 
+        tap(()=> {this.isSearchLoading.set(false)}), 
       )
-      .subscribe((searchTerm) => {
-        this.performSearch(searchTerm);
+      // Update the service with debounced value
+      .subscribe((term: string) => {
+        this.searchService.setTerm(term);
       });
   }
 
-  performSearch(searchTerm: string) {
-    console.log('Search triggered with:', searchTerm);
+  clearField(inputField: HTMLInputElement) {
+    inputField.value = '';
+    this.searchService.checkEmpty(inputField.value)
   }
 }
