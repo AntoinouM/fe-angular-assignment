@@ -1,6 +1,10 @@
 .overview__wrapper {
   padding: $spacer-6 $spacer-7;
   display: flex;
+
+  @include breakpoint-max-width(md) {
+    padding: $spacer-4;
+  }
 }
 
 .overview__left {

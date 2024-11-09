@@ -6,13 +6,26 @@ import { HeroComponent } from '../../shared/hero/hero.component';
 import { Hero } from '../../core/models/hero.model';
 import { OverviewComponent } from '../../shared/overview/overview.component';
 import { Actor } from '../../core/models/actor.model';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { CarouselComponent } from '../../shared/carousel/carousel.component';
 
 @Component({
   selector: 'app-tvshow-detail',
   standalone: true,
-  imports: [HeroComponent, OverviewComponent],
+  imports: [HeroComponent, OverviewComponent, CarouselComponent],
   templateUrl: './tvshow-detail.component.html',
-  styleUrl: './tvshow-detail.component.scss'
+  styleUrl: './tvshow-detail.component.scss',
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class TvshowDetailComponent {
 

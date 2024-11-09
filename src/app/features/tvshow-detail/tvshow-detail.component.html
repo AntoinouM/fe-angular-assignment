@@ -1,12 +1,13 @@
-<div class="detail__nav">
+<div class="detail__nav" @fade>
     <button class="nav__btn" (click)="goBack()">
-        <svg class="btn__svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path class="btn-svg__path" d="M11 6L5 12M5 12L11 18M5 12H19" />
+        <svg class="btn__svg svg--stroked" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path class="btn-svg__path path--stroked" d="M11 6L5 12M5 12L11 18M5 12H19" />
         </svg>
     </button>
     <p class="nav_name">{{ hero().title }}</p>
 </div>
-<div class="detail__wrapper">
+<div class="detail__wrapper" @fade>
     <app-hero class="hero__wrapper" [data]="hero()"></app-hero>
-    <app-overview class="overview__wrapper" [data]="data()" [dataCast]="cast()" [media]="media"></app-overview>
+    <app-overview class="overview__wrapper" [data]="data()" [media]="media"></app-overview>
+    <app-carousel [data]="cast()" [title]="'Cast'"></app-carousel>
 </div>

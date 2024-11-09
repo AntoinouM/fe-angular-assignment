@@ -15,13 +15,12 @@
         <ul class="list--unstyled info__list">
             <li class="list__element">
                 <p class="list__label">First Aired</p>
-                <p class="list__value">{{ data().first_air_date }}</p>
+                <p class="list__value">{{ data().first_air_date | date }}</p>
             </li>
             <li class="list__element">
                 <p class="list__label">Last Aired</p>
-                <p class="list__value">{{ data().last_air_date }}</p>
+                <p class="list__value">{{ data().last_air_date | date }}</p>
             </li>
-
             <li class="list__element">
                 <p class="list__label">Created By</p>
                 <div class="list__value-container">
@@ -72,7 +71,6 @@
         }
 
     </div>
-
     <!-- </div>
     <div class="stats">
         <ul class="nolist" *ngIf="type === 'movie'">
