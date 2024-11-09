@@ -4,7 +4,7 @@ import { TvshowsComponent } from "../tvshows/tvshows.component";
 import { TmdbApiService } from '../../core/services/tmdb-api.service';
 import { MoviesComponent } from '../movies/movies.component';
 import { response } from 'express';
-import { SearchComponent } from '../search/search.component';
+import { SearchComponent } from '../../shared/search/search.component';
 
 @Component({
   selector: 'app-dashboard',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
-import { SpinnerComponent } from '../../shared/spinner/spinner.component';
+import { SpinnerComponent } from '../spinner/spinner.component';
 import { SearchService } from '../../core/services/search-service.service';
 
 @Component({

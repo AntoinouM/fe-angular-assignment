@@ -29,7 +29,6 @@ export class TvshowsComponent implements OnInit {
   }
 
   searchQuery(term: string) {
-    console.log(term)
     this.api.search(this.media, term).subscribe({
       next: ((response) => {
         console.log(response)
