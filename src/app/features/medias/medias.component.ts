@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { MediaCardComponent } from '../../shared/media-card/media-card.component';
 import { SearchViewComponent } from '../search-view/search-view.component';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { TmdbApiService } from '../../core/services/tmdb-api.service';
 import { MatTableModule } from '@angular/material/table';
 import { RatingComponent } from '../../shared/rating/rating.component';
 import { YearPipe } from '../../shared/pipes/date-to-year.pipe';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-medias',
@@ -20,9 +21,10 @@ export class MediasComponent implements OnInit {
   private router = inject(Router);
   private searchService = inject(SearchService);
   private api = inject(TmdbApiService);
+  private destroyRef$ = inject(DestroyRef)
 
   constructor() {}
-  
+
   topRated = input<any[]>([]);
   isSearchEmpty = input<boolean>(true);
   media = input<'tv' | 'movie'>('tv');
@@ -31,24 +33,28 @@ export class MediasComponent implements OnInit {
   searchResult = signal<any[]>([]);
 
   ngOnInit() {
-        this.searchService.search$.subscribe((term) => {
-          if (term) {
-            this.searchQuery(term);
-          } else {
-            this.searchResult.set([]);
-          }
-        });
+        this.searchService.search$
+            .pipe(takeUntilDestroyed(this.destroyRef$))
+            .subscribe((term) => {
+              if (term) {
+                this.searchQuery(term);
+              } else {
+                this.searchResult.set([]);
+              }
+            });
   }
 
   searchQuery(term: string) {
-    this.api.search(this.media(), term).subscribe({
-      next: ((response) => {
-        this.searchResult.set(response.results);
-      }),
-      error: ((error) => {
-        console.error('Error searching data:', error);
+    this.api.search(this.media(), term)
+      .pipe(takeUntilDestroyed(this.destroyRef$))
+      .subscribe({
+        next: ((response) => {
+          this.searchResult.set(response.results);
+        }),
+        error: ((error) => {
+          console.error('Error searching data:', error);
+        })
       })
-    })
   }
 
   handleClickedMedia(id: number) {

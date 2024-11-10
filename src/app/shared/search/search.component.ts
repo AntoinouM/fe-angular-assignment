@@ -1,8 +1,9 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import { SearchService } from '../../core/services/search-service.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-search',
@@ -18,23 +19,27 @@ export class SearchComponent implements OnInit {
   isSearchLoading = signal<boolean>(false);
 
   private searchService = inject(SearchService)
-  
+  private destroyRef$ = inject(DestroyRef)
+
   constructor() {}
 
   ngOnInit() {
     const lastSearchTerm = this.searchService.getLastSearchTerm();
     this.searchControl.setValue(lastSearchTerm);
 
-    this.searchControl.valueChanges.subscribe((term: string | null) => {
-      this.searchService.checkEmpty(term);
-    });
+    this.searchControl.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef$))
+      .subscribe((term: string | null) => {
+        this.searchService.checkEmpty(term);
+      });
 
     this.searchControl.valueChanges
       .pipe(
+        takeUntilDestroyed(this.destroyRef$),
         filter((term): term is string => term !== null && term.length >= 3),
-        tap(()=> {this.isSearchLoading.set(true);}), 
-        debounceTime(1000), 
-        tap(()=> {this.isSearchLoading.set(false)}), 
+        tap(()=> {this.isSearchLoading.set(true);}),
+        debounceTime(1000),
+        tap(()=> {this.isSearchLoading.set(false)}),
       )
       // Update the service with debounced value
       .subscribe((term: string) => {

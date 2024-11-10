@@ -1,4 +1,4 @@
-import { Component, inject, input, signal, WritableSignal } from '@angular/core';
+import { Component, DestroyRef, inject, input, signal, WritableSignal } from '@angular/core';
 import { Location } from '@angular/common';
 import { Hero } from '../../core/models/hero.model';
 import { Actor } from '../../core/models/actor.model';
@@ -9,6 +9,7 @@ import { OverviewComponent } from '../../shared/overview/overview.component';
 import { CarouselComponent } from '../../shared/carousel/carousel.component';
 import { ActorCardComponent } from '../../shared/actor-card/actor-card.component';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-media-detail',
@@ -49,15 +50,20 @@ export class MediaDetailComponent {
   private route = inject(ActivatedRoute);
   private location = inject(Location);
   private api = inject(TmdbApiService);
+  private destroyRef$ = inject(DestroyRef)
 
   constructor() {}
 
 
   ngOnInit() {
-    this.route.url.subscribe((urlSegment) => {
+    this.route.url
+        .pipe(takeUntilDestroyed(this.destroyRef$))
+    .subscribe((urlSegment) => {
       urlSegment[0].path === 'tvshow' ? this.media = 'tv' : this.media = 'movie';
     })
-   this.route.params.subscribe((params: Params) => {
+   this.route.params
+       .pipe(takeUntilDestroyed(this.destroyRef$))
+   .subscribe((params: Params) => {
      this.id = +params['id'];
      this.loadData(this.id)
    });
@@ -69,7 +75,9 @@ export class MediaDetailComponent {
  }
 
  fetchData(mediaType: string, id: number): void {
-   this.api.getTvShow(mediaType, id).subscribe({
+   this.api.getTvShow(mediaType, id)
+       .pipe(takeUntilDestroyed(this.destroyRef$))
+   .subscribe({
      next: (response) => {
        this.data.set(response);
        this.hero.set(this.generateHero(response));
@@ -81,7 +89,9 @@ export class MediaDetailComponent {
  }
 
  fetchCastInfo(mediaType: string, id: number): void {
-   this.api.getCredits(mediaType, id).subscribe({
+   this.api.getCredits(mediaType, id)
+       .pipe(takeUntilDestroyed(this.destroyRef$))
+   .subscribe({
      next: (response) => {
        this.cast_data.set(response.cast);
        this.cast_data().forEach((actor: any) => {
