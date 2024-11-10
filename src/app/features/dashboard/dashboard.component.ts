@@ -6,11 +6,12 @@ import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SearchService } from '../../core/services/search-service.service';
 import { MediasComponent } from '../medias/medias.component';
+import { RatingComponent } from '../../shared/rating/rating.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatTabsModule, SearchComponent, NavbarComponent, MediasComponent],
+  imports: [MatTabsModule, SearchComponent, NavbarComponent, MediasComponent, RatingComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   animations: [
