@@ -7,7 +7,6 @@
     </app-media-card>
     }
 </div>
-}
-@if(!isSearchEmpty()) {
+} @else {
 <app-search-view [media]="media" [searchResult]="searchResult()"></app-search-view>
 }
