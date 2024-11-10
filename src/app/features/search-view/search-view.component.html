@@ -2,8 +2,7 @@
     @for(result of searchResult(); track $index) {
     <app-media-card class="search-view__card" (clickedItemEvent)="handleClickedMedia($event)" [isDetailed]="true"
         [imageSource]="'https://image.tmdb.org/t/p/w500' + result.poster_path"
-        [name]="media() === 'tv' ? result.name : result.title" [rating]="result.vote_average"
-        [voteCount]="result.vote_count" [date]="media() === 'tv' ? result.first_air_date : result.release_date "
-        [id]="result.id"></app-media-card>
+        [name]="media() === 'tv' ? result.name : result.title"
+        [date]="media() === 'tv' ? result.first_air_date : result.release_date " [id]="result.id"></app-media-card>
     }
 </div>

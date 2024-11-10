@@ -16,8 +16,6 @@ export class MediaCardComponent {
   imageSource = input<string>('');
   date = input<string>('');
   name = input<string>('');
-  rating = input<number>(0);
-  voteCount = input<number>(0);
   id = input<number>(0);
   
   clickedItemEvent = output<number>();
