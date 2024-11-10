@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TmdbApiService } from '../../core/services/tmdb-api.service';
 import { SearchComponent } from '../../shared/search/search.component';
@@ -7,6 +7,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { SearchService } from '../../core/services/search-service.service';
 import { MediasComponent } from '../medias/medias.component';
 import { RatingComponent } from '../../shared/rating/rating.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-dashboard',
@@ -37,13 +38,16 @@ export class DashboardComponent implements OnInit {
 
   private searchService = inject(SearchService);
   private api = inject(TmdbApiService);
+  private destroyRef$ = inject(DestroyRef)
 
   constructor() {}
 
 
   ngOnInit() {
     this.loadTopRated();
-    this.searchService.isEmpty$.subscribe(isEmpty => {
+    this.searchService.isEmpty$
+    .pipe(takeUntilDestroyed(this.destroyRef$))
+    .subscribe(isEmpty => {
       this.isSearchEmpty.set(isEmpty);
     });
   }
@@ -54,7 +58,9 @@ export class DashboardComponent implements OnInit {
   }
 
   fetchTopRated(mediaType: string, array: WritableSignal<any[]>): void {
-    this.api.getTopRated(1, mediaType).subscribe({
+    this.api.getTopRated(1, mediaType)
+    .pipe(takeUntilDestroyed(this.destroyRef$))
+    .subscribe({
       next: (response) => {
         const tempArray = response.results.map((item: any) => ({
             imageSrc: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : null,
