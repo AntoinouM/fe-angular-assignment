@@ -9,59 +9,41 @@ import { Observable } from 'rxjs';
 export class TmdbApiService {
 
   private apiUrl = 'https://api.themoviedb.org/3';
-  private apiKey = import.meta.env.NG_APP_KEY;
   private language = 'en-US';
 
   constructor(private http:HttpClient) {}
 
   // FUNCTIONS CALL
-  // const url = 'https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1';
-  // const url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
   getTopRated(page: number, mediaType: string): Observable<any> {
-    const headers = this.buildHeaders(this.apiKey);
     const params = this.buildParams({ page: page.toString(), language: this.language })
-    return this.http.get(`${this.apiUrl}/${mediaType}/top_rated`, { headers , params })
+    return this.http.get(`${this.apiUrl}/${mediaType}/top_rated`, { params })
   }
 
   // call to specific id
   getTvShow(mediaType: string ,id: number): Observable<any> {
-    const headers = this.buildHeaders(this.apiKey);
     const params = this.buildParams({ language: this.language })
-    return this.http.get(`${this.apiUrl}/${mediaType}/${id}`, { headers , params })
+    return this.http.get(`${this.apiUrl}/${mediaType}/${id}`, { params })
   }
 
   // get credit for specific id
   getCredits(mediaType: string, id: number): Observable<any> {
-    const headers = this.buildHeaders(this.apiKey);
     const params = this.buildParams({});
-    return this.http.get(`${this.apiUrl}/${mediaType}/${id}/credits`, { headers, params })
+    return this.http.get(`${this.apiUrl}/${mediaType}/${id}/credits`, { params })
   }
 
   // search
   search(mediaType: string, query: string): Observable<any> {
-    //url = 'https://api.themoviedb.org/3/search/movie?query=_testquery_&include_adult=false&language=en-US&page=1';
-    const headers = this.buildHeaders(this.apiKey);
     const params = this.buildParams({});
-    return this.http.get(`${this.apiUrl}/search/${mediaType}?query=${query}`, { headers, params })
+    return this.http.get(`${this.apiUrl}/search/${mediaType}?query=${query}`, { params })
   }
 
   // get external id
   getExternalId(id: any): Observable<any> {
-    // https://api.themoviedb.org/3/find/external_id?external_source='
-    const headers = this.buildHeaders(this.apiKey);
     const params = this.buildParams({});
-    return this.http.get(`${this.apiUrl}/find/${id}?external_source=imdb_id`, { headers, params })
+    return this.http.get(`${this.apiUrl}/find/${id}?external_source=imdb_id`, { params })
   }
 
-  // HELPERS
-  // private functions to control request
-  private buildHeaders(key: string): HttpHeaders {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${key}`
-    })
-    return headers;
-  }
+  // HELPER
   private buildParams(params: any): HttpParams {
     let httpParams = new HttpParams()
     for (const key in params) {
