@@ -4,11 +4,14 @@ import { SearchViewComponent } from '../search-view/search-view.component';
 import { Router } from '@angular/router';
 import { SearchService } from '../../core/services/search-service.service';
 import { TmdbApiService } from '../../core/services/tmdb-api.service';
+import { MatTableModule } from '@angular/material/table';
+import { RatingComponent } from '../../shared/rating/rating.component';
+import { YearPipe } from '../../shared/pipes/date-to-year.pipe';
 
 @Component({
   selector: 'app-medias',
   standalone: true,
-  imports: [MediaCardComponent, SearchViewComponent],
+  imports: [MediaCardComponent, SearchViewComponent, MatTableModule, RatingComponent, YearPipe],
   templateUrl: './medias.component.html',
   styleUrl: './medias.component.scss',
 })
@@ -19,6 +22,7 @@ export class MediasComponent implements OnInit {
   topRated = input<any[]>([]);
   isSearchEmpty = input<boolean>(true);
   media = input<'tv' | 'movie'>('tv');
+  displayedColumns: string[] = ['position', 'image', 'name', 'year', 'rating'];
 
   searchResult = signal<any[]>([]);
 
