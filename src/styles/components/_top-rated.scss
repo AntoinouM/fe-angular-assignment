@@ -1,0 +1,31 @@
+.top-rated__wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.top-rated-table {
+  width: 70% !important;
+  min-width: 30%;
+
+  @include breakpoint-max-width(md) {
+    width: 90%;
+  }
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: solid $border-width rgba($primary, 0.3) !important;
+  padding-bottom: $spacer-3;
+}
+
+.mat-column-name {
+  font-size: 1.5rem;
+  width: fit-content;
+}
+
+.mat-column-position,
+.mat-column-year,
+.mat-column-rating {
+  @include breakpoint-max-width(md) {
+    display: none;
+  }
+}
