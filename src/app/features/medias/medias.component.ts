@@ -1,4 +1,4 @@
-import { Component, input, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { MediaCardComponent } from '../../shared/media-card/media-card.component';
 import { SearchViewComponent } from '../search-view/search-view.component';
 import { Router } from '@angular/router';
@@ -17,7 +17,11 @@ import { YearPipe } from '../../shared/pipes/date-to-year.pipe';
 })
 export class MediasComponent implements OnInit {
 
-  constructor(private router: Router, private searchService: SearchService, private api: TmdbApiService) {}
+  private router = inject(Router);
+  private searchService = inject(SearchService);
+  private api = inject(TmdbApiService);
+
+  constructor() {}
   
   topRated = input<any[]>([]);
   isSearchEmpty = input<boolean>(true);

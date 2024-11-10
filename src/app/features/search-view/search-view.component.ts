@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { MediaCardComponent } from '../../shared/media-card/media-card.component';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 })
 export class SearchViewComponent {
 
-  constructor(private router: Router) {}
+  private router = inject(Router)
+
+  constructor() {}
 
   searchResult = input<any[]>([]);
   media = input<string>('tv');

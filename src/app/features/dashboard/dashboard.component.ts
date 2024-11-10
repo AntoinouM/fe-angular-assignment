@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TmdbApiService } from '../../core/services/tmdb-api.service';
 import { SearchComponent } from '../../shared/search/search.component';
@@ -35,7 +35,11 @@ export class DashboardComponent implements OnInit {
   mediaType = signal<'tv' | 'movie'>('tv');
   mediaTypeArray: ('tv' | 'movie')[] = ['tv', 'movie']
 
-  constructor(private api: TmdbApiService, private searchService: SearchService) {}
+  private searchService = inject(SearchService);
+  private api = inject(TmdbApiService);
+
+  constructor() {}
+
 
   ngOnInit() {
     this.loadTopRated();
