@@ -8,6 +8,7 @@
 
 .search-view__card {
   width: clamp(140px, 17%, 200px);
+  margin-top: $spacer-4;
 
   @include breakpoint-max-width(md) {
     width: 30%;
