@@ -29,7 +29,6 @@ export class TvshowsComponent implements OnInit {
           }
         })
         this.searchService.search$.subscribe((term) => {
-          console.log(term)
           if (term) {
             this.searchQuery(term);
           }
