@@ -1,25 +1,26 @@
 import { Component, input, OnInit, signal } from '@angular/core';
 import { MediaCardComponent } from '../../shared/media-card/media-card.component';
+import { SearchViewComponent } from '../search-view/search-view.component';
 import { Router } from '@angular/router';
 import { SearchService } from '../../core/services/search-service.service';
 import { TmdbApiService } from '../../core/services/tmdb-api.service';
-import { SearchViewComponent } from '../search-view/search-view.component';
 
 @Component({
-  selector: 'movies',
+  selector: 'app-medias',
   standalone: true,
   imports: [MediaCardComponent, SearchViewComponent],
-  templateUrl: './movies.component.html',
-  styleUrl: './movies.component.scss'
+  templateUrl: './medias.component.html',
+  styleUrl: './medias.component.scss'
 })
-export class MoviesComponent implements OnInit {
+export class MediasComponent implements OnInit {
 
   constructor(private router: Router, private searchService: SearchService, private api: TmdbApiService) {}
   
   topRated = input<any[]>([]);
   isSearchEmpty = input<boolean>(true);
-  searchResult = signal<any[]>([])
-  media: string = 'movie';
+  media = input<'tv' | 'movie'>('tv');
+
+  searchResult = signal<any[]>([]);
 
   ngOnInit() {
         this.searchService.resetSearch$.subscribe((bool) => {
@@ -35,7 +36,7 @@ export class MoviesComponent implements OnInit {
   }
 
   searchQuery(term: string) {
-    this.api.search(this.media, term).subscribe({
+    this.api.search(this.media(), term).subscribe({
       next: ((response) => {
         this.searchResult.set(response.results);
       }),
@@ -46,6 +47,10 @@ export class MoviesComponent implements OnInit {
   }
 
   handleClickedMedia(id: number) {
-        this.router.navigate([`/movie/${id}`])
+    if (this.media() === 'movie') {
+      this.router.navigate([`/movie/${id}`])
+    } else {
+      this.router.navigate([`/tvshow/${id}`])
+    }
   }
 }

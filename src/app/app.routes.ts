@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
-import { TvshowDetailComponent } from './features/tvshow-detail/tvshow-detail.component';
-import { MovieDetailComponent } from './features/movie-detail/movie-detail.component';
+import { MediaDetailComponent } from './features/media-detail/media-detail.component';
+
 
 export const routes: Routes = [
     {
@@ -11,11 +11,11 @@ export const routes: Routes = [
     },
     {
       path: 'tvshow/:id',
-      component: TvshowDetailComponent,
+      component: MediaDetailComponent,
     },
     {
       path: 'movie/:id',
-      component: MovieDetailComponent,
+      component: MediaDetailComponent,
     }
 
 ];

@@ -14,7 +14,7 @@
                 <div class="meta__seasons">{{ data().season_count }} seasons</div>
                 }
                 @if (data().date) {
-                <div class="meta__date">{{ data().date }}</div>
+                <div class="meta__date">{{ data().date | year }}</div>
                 }
             </div>
             <div class="info__description">{{ data().description }}</div>

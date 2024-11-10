@@ -1,4 +1,5 @@
 export interface Hero {
+    media: string,
     title: string,
     rating: number,
     vote_count: number,
