@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Output } from '@angular/core';
+import { Component, EventEmitter, input, output, Output } from '@angular/core';
 import { YearPipe } from '../pipes/date-to-year.pipe';
 import { ImagePathToUrl } from '../pipes/image-path-to-url.pipe';
 
@@ -18,7 +18,7 @@ export class MediaCardComponent {
   voteCount = input<number>(0);
   id = input<number>(0);
   
-  @Output() clickedItemEvent = new EventEmitter<number>();
+  clickedItemEvent = output<number>();
 
   emitClicked(id: number) {
     this.clickedItemEvent.emit(id)

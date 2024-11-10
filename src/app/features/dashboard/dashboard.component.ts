@@ -7,11 +7,12 @@ import { SearchComponent } from '../../shared/search/search.component';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SearchService } from '../../core/services/search-service.service';
+import { MediasComponent } from '../medias/medias.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatTabsModule, TvshowsComponent, MoviesComponent, SearchComponent, NavbarComponent],
+  imports: [MatTabsModule, TvshowsComponent, MoviesComponent, SearchComponent, NavbarComponent, MediasComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   animations: [
