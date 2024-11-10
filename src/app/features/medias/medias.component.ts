@@ -27,14 +27,11 @@ export class MediasComponent implements OnInit {
   searchResult = signal<any[]>([]);
 
   ngOnInit() {
-        this.searchService.resetSearch$.subscribe((bool) => {
-          if (bool) {
-            this.searchResult.set([]);
-          }
-        })
         this.searchService.search$.subscribe((term) => {
           if (term) {
             this.searchQuery(term);
+          } else {
+            this.searchResult.set([]);
           }
         });
   }

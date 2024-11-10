@@ -27,10 +27,6 @@ export class SearchComponent implements OnInit {
       this.searchService.checkEmpty(term);
     });
 
-    this.searchControl.valueChanges.subscribe((term: string | null) => {
-      this.searchService.resetSearch(term);
-    })
-
     this.searchControl.valueChanges
       .pipe(
         filter((term): term is string => term !== null && term.length >= 3),
