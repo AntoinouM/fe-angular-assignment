@@ -1,8 +1,6 @@
 import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
-import { TvshowsComponent } from "../tvshows/tvshows.component";
 import { TmdbApiService } from '../../core/services/tmdb-api.service';
-import { MoviesComponent } from '../movies/movies.component';
 import { SearchComponent } from '../../shared/search/search.component';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -12,7 +10,7 @@ import { MediasComponent } from '../medias/medias.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatTabsModule, TvshowsComponent, MoviesComponent, SearchComponent, NavbarComponent, MediasComponent],
+  imports: [MatTabsModule, SearchComponent, NavbarComponent, MediasComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   animations: [
@@ -32,10 +30,11 @@ export class DashboardComponent implements OnInit {
   topRatedMovies: WritableSignal<any[]> = signal([]);
   topRatedTvShows: WritableSignal<any[]> = signal([]);
   isSearchEmpty = signal<boolean>(true);
-  mediaType = signal<string>('tv');
+
+  mediaType = signal<'tv' | 'movie'>('tv');
 
 
-  mediaTypeArray: string[] = ['tv', 'movie']
+  mediaTypeArray: ('tv' | 'movie')[] = ['tv', 'movie']
 
   constructor(private api: TmdbApiService, private searchService: SearchService) {}
 
