@@ -1,12 +1,16 @@
 <app-navbar></app-navbar>
 <div class="dashboard__wrapper" @fade>
     <app-search class="search__wrapper"></app-search>
-    <mat-tab-group #tabRef>
-        <mat-tab label="TV-SHOWS">
-            <tvshows [isSearchEmpty]="isSearchEmpty()" [topRated]="topRatedTvShows()"></tvshows>
+    <mat-tab-group #tabRef (selectedTabChange)="handleTabChange(tabRef.selectedIndex)">
+        <mat-tab label="TV-SHOWS" aria-label="Tab for TV-shows display">
+            <ng-template matTabContent>
+                <tvshows [isSearchEmpty]="isSearchEmpty()" [topRated]="topRatedTvShows()"></tvshows>
+            </ng-template>
         </mat-tab>
-        <mat-tab label="MOVIES">
-            <movies [topRated]="topRatedMovies()"></movies>
+        <mat-tab label="MOVIES" aria-label="Tab for Movies display">
+            <ng-template matTabContent>
+                <movies [isSearchEmpty]="isSearchEmpty()" [topRated]="topRatedMovies()"></movies>
+            </ng-template>
         </mat-tab>
     </mat-tab-group>
 </div>

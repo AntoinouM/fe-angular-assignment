@@ -18,7 +18,6 @@ export class TvshowsComponent implements OnInit {
   
   topRated = input<any[]>([]);
   isSearchEmpty = input<boolean>(true);
-  isSearchActive = signal<boolean>(false);
   searchResult = signal<any[]>([])
   media: string = 'tv';
 
@@ -29,7 +28,6 @@ export class TvshowsComponent implements OnInit {
           }
         })
         this.searchService.search$.subscribe((term) => {
-          console.log(term)
           if (term) {
             this.searchQuery(term);
           }

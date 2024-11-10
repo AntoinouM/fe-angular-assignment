@@ -1,7 +1,11 @@
-<h3>Top rated TV-SHOWS</h3>
+@if(isSearchEmpty()) {
+<h3>Top rated MOVIES</h3>
 
 @for (movie of topRated(); track movie.id) {
 <app-media-card (clickedItemEvent)="handleClickedMedia($event)" [imageSource]="movie.imageSrc" [name]="movie.title"
     [rating]="movie.rating" [voteCount]="movie.vote_count" [date]="movie.release_date" [id]="movie.id">
 </app-media-card>
+}
+} @else {
+<app-search-view [media]="media" [searchResult]="searchResult()"></app-search-view>
 }

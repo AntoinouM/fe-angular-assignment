@@ -23,6 +23,7 @@ export class SearchService {
   }
 
   checkEmpty(term: string | null): void {
+    this.lastSearchTerm = term!;
     this.isEmptySubject.next(term!.length === 0);
   }
 
@@ -36,5 +37,9 @@ export class SearchService {
 
   getLastSearchTerm(): string {
     return this.lastSearchTerm;
+  }
+
+  setLastSearchTerm(str: string) {
+    this.lastSearchTerm = str;
   }
 }

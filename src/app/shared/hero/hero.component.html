@@ -1,6 +1,6 @@
 <div class="hero">
-    <div class="hero__backdrop">
-        <img alt="{{data().title}}" class="backdrop__image" [src]="data().imageSource" />
+    <div class="hero__backdrop lazyloaded">
+        <img alt="{{data().title}}" class="backdrop__image lazyload" [src]="data().imageSource" />
     </div>
     <div class="hero__panel">
         <h3 class="panel__name">{{data().title}}</h3>

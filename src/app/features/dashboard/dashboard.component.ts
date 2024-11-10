@@ -31,6 +31,10 @@ export class DashboardComponent implements OnInit {
   topRatedMovies: WritableSignal<any[]> = signal([]);
   topRatedTvShows: WritableSignal<any[]> = signal([]);
   isSearchEmpty = signal<boolean>(true);
+  mediaType = signal<string>('tv');
+
+
+  mediaTypeArray: string[] = ['tv', 'movie']
 
   constructor(private api: TmdbApiService, private searchService: SearchService) {}
 
@@ -62,5 +66,9 @@ export class DashboardComponent implements OnInit {
       complete: () => {
       }
     })
+  }
+
+  handleTabChange(index: number | null) {
+    this.mediaType.set(this.mediaTypeArray[index!]);
   }
 }
