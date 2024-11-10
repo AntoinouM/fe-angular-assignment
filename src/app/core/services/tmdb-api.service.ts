@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,7 +10,9 @@ export class TmdbApiService {
   private apiUrl = 'https://api.themoviedb.org/3';
   private language = 'en-US';
 
-  constructor(private http:HttpClient) {}
+  private http = inject(HttpClient)
+
+  constructor() {}
 
   // FUNCTIONS CALL
   getTopRated(page: number, mediaType: string): Observable<any> {

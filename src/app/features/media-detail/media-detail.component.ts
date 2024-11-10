@@ -1,4 +1,4 @@
-import { Component, input, signal, WritableSignal } from '@angular/core';
+import { Component, inject, input, signal, WritableSignal } from '@angular/core';
 import { Location } from '@angular/common';
 import { Hero } from '../../core/models/hero.model';
 import { Actor } from '../../core/models/actor.model';
@@ -46,7 +46,12 @@ export class MediaDetailComponent {
   })
   cast: WritableSignal<Actor[]> = signal([])
 
-  constructor(private route: ActivatedRoute, private api: TmdbApiService, private location: Location) {}
+  private route = inject(ActivatedRoute);
+  private location = inject(Location);
+  private api = inject(TmdbApiService);
+
+  constructor() {}
+
 
   ngOnInit() {
     this.route.url.subscribe((urlSegment) => {

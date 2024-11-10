@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
 import { SpinnerComponent } from '../spinner/spinner.component';
@@ -17,7 +17,9 @@ export class SearchComponent implements OnInit {
   searchControl = new FormControl('');
   isSearchLoading = signal<boolean>(false);
 
-  constructor(private searchService: SearchService) {}
+  private searchService = inject(SearchService)
+  
+  constructor() {}
 
   ngOnInit() {
     const lastSearchTerm = this.searchService.getLastSearchTerm();
