@@ -2,7 +2,7 @@
 <h3>TOP RATED {{ media() === 'tv' ? 'TV-SHOWS' : 'MOVIES' }}</h3>
 <div class="top-rated__wrapper">
     @for(item of topRated(); track $index) {
-    <app-media-card (clickedItemEvent)="handleClickedMedia($event)" [imageSource]="item.imageSrc"
+    <app-media-card (clickedItemEvent)="handleClickedMedia($event)" [isDetailed]="false" [imageSource]="item.imageSrc"
         [date]="media() === 'tv' ? item.first_air_date : item.release_date"
         [name]="media() === 'tv' ? item.name : item.title" [rating]="item.rating" [voteCount]="item.vote_count"
         [id]="item.id">

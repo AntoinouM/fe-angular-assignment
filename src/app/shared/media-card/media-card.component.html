@@ -11,6 +11,7 @@
         </svg>
     </span>
     }
+    @if(isDetailed()) {
     <div class="card__info-wrapper">
         <h4 class="info__name">{{ name() }}</h4>
         <h6 class="info__date">{{ date() | year }}</h6>
@@ -19,4 +20,5 @@
             <p class="rating__vote-count">{{ voteCount() }} votes</p>
         </div>
     </div>
+    }
 </div>

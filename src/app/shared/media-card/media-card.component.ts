@@ -12,6 +12,7 @@ import { RatingComponent } from '../rating/rating.component';
 })
 export class MediaCardComponent {
 
+  isDetailed = input<boolean>(true);
   imageSource = input<string>('');
   date = input<string>('');
   name = input<string>('');

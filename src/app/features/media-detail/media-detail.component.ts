@@ -20,10 +20,10 @@ import { animate, style, transition, trigger } from '@angular/animations';
     trigger('fade', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('300ms', style({ opacity: 1 }))
+        animate('600ms', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('300ms', style({ opacity: 0 }))
+        animate('600ms', style({ opacity: 0 }))
       ])
     ])
   ]

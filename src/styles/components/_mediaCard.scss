@@ -2,7 +2,9 @@
   width: clamp(140px, 17%, 200px);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: $spacer-2;
+  margin-top: $spacer-3;
 
   &:hover {
     cursor: pointer;
@@ -35,6 +37,18 @@
   }
 
   &__info-wrapper {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include breakpoint-max-width(md) {
+      height: 100px;
+    }
+    @include breakpoint-max-width(s) {
+      height: 85px;
+    }
+
     & .info__name,
     .info__date {
       padding: 0;
@@ -47,9 +61,10 @@
 
     & .info__rating {
       display: flex;
-      gap: $spacer-3;
+      flex-direction: column;
+      gap: $spacer-1;
       margin-top: $spacer-1;
-      align-items: end;
+      align-items: start;
 
       & .rating__vote-count {
         font-size: 0.9rem;
