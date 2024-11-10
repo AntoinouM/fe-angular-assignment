@@ -1,0 +1,34 @@
+.rating__wrapper {
+  $height: 28px;
+  width: 140px;
+  height: $height;
+  position: relative;
+
+  & .rating__background {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    height: 95%;
+    background-color: $tertiary;
+    z-index: -1;
+
+    &--opposed {
+      position: absolute;
+      z-index: -2;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 1%;
+      width: 95%;
+      height: 95%;
+      background-color: $grey-40;
+    }
+  }
+
+  & .rating__svg {
+    width: 100%;
+    height: 100%;
+    fill: $secondary;
+    z-index: 2;
+  }
+}

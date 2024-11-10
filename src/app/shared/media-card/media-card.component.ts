@@ -1,11 +1,12 @@
 import { Component, EventEmitter, input, output, Output } from '@angular/core';
 import { YearPipe } from '../pipes/date-to-year.pipe';
 import { ImagePathToUrl } from '../pipes/image-path-to-url.pipe';
+import { RatingComponent } from '../rating/rating.component';
 
 @Component({
   selector: 'app-media-card',
   standalone: true,
-  imports: [YearPipe, ImagePathToUrl],
+  imports: [YearPipe, ImagePathToUrl, RatingComponent],
   templateUrl: './media-card.component.html',
   styleUrl: './media-card.component.scss'
 })

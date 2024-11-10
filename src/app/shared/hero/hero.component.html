@@ -6,7 +6,7 @@
         <h3 class="panel__name">{{data().title}}</h3>
         <div class="panel__info">
             <div class="info__meta">
-                <div class="meta__rating">{{ data().rating }} / 10</div>
+                <app-rating [rating]="data().rating * 10"></app-rating>
                 @if(data().vote_count > 0) {
                 <div class="rating__vote-count">{{data().vote_count}} reviews</div>
                 }
