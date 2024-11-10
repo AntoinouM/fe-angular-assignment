@@ -10,7 +10,7 @@ import { TmdbApiService } from '../../core/services/tmdb-api.service';
   standalone: true,
   imports: [MediaCardComponent, SearchViewComponent],
   templateUrl: './medias.component.html',
-  styleUrl: './medias.component.scss'
+  styleUrl: './medias.component.scss',
 })
 export class MediasComponent implements OnInit {
 

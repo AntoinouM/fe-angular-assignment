@@ -2,13 +2,13 @@
 <div class="dashboard__wrapper" @fade>
     <app-search class="search__wrapper"></app-search>
     <mat-tab-group #tabRef (selectedTabChange)="handleTabChange(tabRef.selectedIndex)">
-        <mat-tab label="TV-SHOWS" aria-label="Tab for TV-shows display">
+        <mat-tab label="TV-SHOWS" aria-label="Tab for TV-shows display" @fade>
             <ng-template matTabContent>
                 <app-medias [media]="mediaType()" [isSearchEmpty]="isSearchEmpty()"
                     [topRated]="topRatedTvShows()"></app-medias>
             </ng-template>
         </mat-tab>
-        <mat-tab label="MOVIES" aria-label="Tab for Movies display">
+        <mat-tab label="MOVIES" aria-label="Tab for Movies display" @fade>
             <ng-template matTabContent>
                 <app-medias [media]="mediaType()" [isSearchEmpty]="isSearchEmpty()"
                     [topRated]="topRatedMovies()"></app-medias>
