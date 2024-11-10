@@ -4,14 +4,12 @@
     <mat-tab-group #tabRef (selectedTabChange)="handleTabChange(tabRef.selectedIndex)">
         <mat-tab label="TV-SHOWS" aria-label="Tab for TV-shows display">
             <ng-template matTabContent>
-                <app-medias [media]="mediaType()" [isSearchEmpty]="isSearchEmpty()"
-                    [topRated]="topRatedTvShows()"></app-medias>
+                <app-medias media="tv" [isSearchEmpty]="isSearchEmpty()" [topRated]="topRatedTvShows()"></app-medias>
             </ng-template>
         </mat-tab>
         <mat-tab label="MOVIES" aria-label="Tab for Movies display">
             <ng-template matTabContent>
-                <app-medias [media]="mediaType()" [isSearchEmpty]="isSearchEmpty()"
-                    [topRated]="topRatedMovies()"></app-medias>
+                <app-medias media="movie" [isSearchEmpty]="isSearchEmpty()" [topRated]="topRatedMovies()"></app-medias>
             </ng-template>
         </mat-tab>
     </mat-tab-group>

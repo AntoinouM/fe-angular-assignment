@@ -33,8 +33,6 @@ export class DashboardComponent implements OnInit {
   isSearchEmpty = signal<boolean>(true);
 
   mediaType = signal<'tv' | 'movie'>('tv');
-
-
   mediaTypeArray: ('tv' | 'movie')[] = ['tv', 'movie']
 
   constructor(private api: TmdbApiService, private searchService: SearchService) {}
@@ -70,6 +68,6 @@ export class DashboardComponent implements OnInit {
   }
 
   handleTabChange(index: number | null) {
-    this.mediaType.set(this.mediaTypeArray[index!]);
+    console.log(index)
   }
 }
