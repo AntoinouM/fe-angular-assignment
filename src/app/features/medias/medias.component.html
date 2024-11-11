@@ -1,5 +1,5 @@
 @if(isSearchEmpty()) {
-<h3>TOP RATED {{ media() === 'tv' ? 'TV-SHOWS' : 'MOVIES' }}</h3>
+<h3 class="medias__title">TOP RATED {{ media() === 'tv' ? 'TV-SHOWS' : 'MOVIES' }}</h3>
 <div class="top-rated__wrapper">
   <table mat-table [dataSource]="topRated()" class="top-rated-table">
     <ng-container matColumnDef="position">
