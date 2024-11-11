@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MediaDetailComponent } from './media-detail.component';
 import { provideRouter } from '@angular/router';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('MediaDetailComponent', () => {
@@ -12,7 +12,7 @@ describe('MediaDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MediaDetailComponent, BrowserAnimationsModule],
+      imports: [MediaDetailComponent, NoopAnimationsModule],
       providers: [
         provideRouter([]),
         provideHttpClient(),
@@ -29,8 +29,8 @@ describe('MediaDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display correct title in hero nav_name element'), () => {
-    const testTitle = 'Breaking Bad'
+  it('should display correct title in hero nav_name element', () => {
+    const testTitle = 'Breaking Bad';
 
     component.hero.set({
       media: 'tv',
@@ -48,5 +48,5 @@ describe('MediaDetailComponent', () => {
     const navName = fixture.nativeElement.querySelector('.nav__name');
 
     expect(navName.textContent).toContain(testTitle);
-  }
+  });
 });
