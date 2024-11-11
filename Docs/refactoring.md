@@ -1,8 +1,8 @@
 - [x] one component 'media' and 'media-detail' instead of tv + movie
 - [ ] overview-list component instead of if statements in overview component
-- [ ] unsubscribe to all Observables ngOnDestroy
-- [ ] when go back from detailed view, retrieve previous state (active tab and search)
+- [x] unsubscribe to all Observables ngOnDestroy
+- [x] when go back from detailed view, retrieve previous state (active tab and search)
   - [x] search
-  - [ ] active tab
-- [ ] have stars instead of number for rating (pipe?)
+  - [x] active tab
+- [x] have stars instead of number for rating (pipe?)
 - [ ] indentation of @if and @for in templates
