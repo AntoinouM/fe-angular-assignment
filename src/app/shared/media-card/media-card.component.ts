@@ -1,12 +1,10 @@
-import { Component, EventEmitter, input, output, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { YearPipe } from '../pipes/date-to-year.pipe';
-import { ImagePathToUrl } from '../pipes/image-path-to-url.pipe';
-import { RatingComponent } from '../rating/rating.component';
 
 @Component({
   selector: 'app-media-card',
   standalone: true,
-  imports: [YearPipe, ImagePathToUrl, RatingComponent],
+  imports: [YearPipe],
   templateUrl: './media-card.component.html',
   styleUrl: './media-card.component.scss'
 })
@@ -17,7 +15,7 @@ export class MediaCardComponent {
   date = input<string>('');
   name = input<string>('');
   id = input<number>(0);
-  
+
   clickedItemEvent = output<number>();
 
   emitClicked(id: number) {

@@ -1,5 +1,4 @@
-import { Component, input, Input, WritableSignal } from '@angular/core';
-import { Hero } from '../../core/models/hero.model';
+import { Component, input } from '@angular/core';
 import { YearPipe } from '../pipes/date-to-year.pipe';
 import { RatingComponent } from '../rating/rating.component';
 

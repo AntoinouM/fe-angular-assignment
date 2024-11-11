@@ -1,6 +1,6 @@
-import { Component, DestroyRef, inject, OnInit, output, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
+import { debounceTime, filter, tap } from 'rxjs/operators';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import { SearchService } from '../../core/services/search-service.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';

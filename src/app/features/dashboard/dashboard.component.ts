@@ -6,7 +6,6 @@ import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SearchService } from '../../core/services/search-service.service';
 import { MediasComponent } from '../medias/medias.component';
-import { RatingComponent } from '../../shared/rating/rating.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
