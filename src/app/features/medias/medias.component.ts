@@ -37,7 +37,7 @@ export class MediasComponent implements OnInit {
         this.searchService.search$
             .pipe(takeUntilDestroyed(this.destroyRef$))
             .subscribe((term) => {
-              if (term.length >= 3) {
+              if (term.length >= 3 && !term.substring(0, 3).includes(' ')) {
                 this.searchQuery(term);
                 this.isSearchValid.set(true);
                 this.query.set(term);

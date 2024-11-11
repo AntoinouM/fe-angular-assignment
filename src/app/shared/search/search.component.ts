@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef$),
         filter((term): term is string => term !== null),
         tap((term)=> {
-          if (term.length >= 3) {
+          if (term.length >= 3 && !term.substring(0, 3).includes(' ')) {
             this.isSearchLoading.set(true);
             this.isSearchValid.set(true);
           } else {
