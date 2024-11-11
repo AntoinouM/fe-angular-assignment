@@ -28,3 +28,11 @@
     object-fit: cover;
   }
 }
+
+.no-result__info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacer-3;
+  align-items: center;
+  justify-content: center;
+}

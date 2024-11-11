@@ -31,15 +31,18 @@ export class MediasComponent implements OnInit {
   displayedColumns: string[] = ['position', 'image', 'name', 'year', 'rating'];
 
   searchResult = signal<any[]>([]);
+  query = signal<string>('');
 
   ngOnInit() {
         this.searchService.search$
             .pipe(takeUntilDestroyed(this.destroyRef$))
             .subscribe((term) => {
               if (term) {
+                this.query.set(term);
                 this.searchQuery(term);
               } else {
                 this.searchResult.set([]);
+                this.query.set('');
               }
             });
   }
