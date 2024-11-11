@@ -1,0 +1,10 @@
+.footer {
+  padding: $spacer-4;
+  border-top: solid $border-width rgba($primary, 0.3);
+  text-align: center;
+
+  & a {
+    text-decoration: underline;
+    font-style: italic;
+  }
+}

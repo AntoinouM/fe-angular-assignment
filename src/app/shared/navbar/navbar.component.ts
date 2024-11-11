@@ -1,5 +1,4 @@
 import { NgOptimizedImage } from '@angular/common';
-import { RouterOutlet, RouterLink } from '@angular/router';
 import { Component } from '@angular/core';
 
 

@@ -17,6 +17,7 @@ export class SearchComponent implements OnInit {
 
   searchControl = new FormControl('');
   isSearchLoading = signal<boolean>(false);
+  isSearchValid = signal<boolean>(false);
 
   private searchService = inject(SearchService)
   private destroyRef$ = inject(DestroyRef)
@@ -32,7 +33,12 @@ export class SearchComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef$),
         filter((term): term is string => term !== null),
         tap((term)=> {
-          if (term.length >= 3) this.isSearchLoading.set(true);
+          if (term.length >= 3) {
+            this.isSearchLoading.set(true);
+            this.isSearchValid.set(true);
+          } else {
+            this.isSearchValid.set(false);
+          }
         }),
         debounceTime(1000),
         tap(()=> {this.isSearchLoading.set(false)}),
