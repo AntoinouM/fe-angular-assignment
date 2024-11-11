@@ -1,14 +1,27 @@
 .top-rated__wrapper {
   display: flex;
   justify-content: center;
+
+  @include breakpoint-max-width(md) {
+    overflow: hidden;
+  }
+}
+
+.medias__title {
+  padding: $spacer-3;
+  margin-top: $spacer-5;
+  font-weight: 400;
+  text-align: center;
+  color: $tertiary;
 }
 
 .top-rated-table {
   width: 70% !important;
-  min-width: 30%;
+  min-width: 30% !important;
 
   @include breakpoint-max-width(md) {
-    width: 90%;
+    width: 100%;
+    overflow: hidden;
   }
 }
 
@@ -19,7 +32,15 @@
 
 .mat-column-name {
   font-size: 1.5rem;
-  width: fit-content;
+  width: 25%;
+
+  @include breakpoint-max-width(md) {
+    font-size: 1.2rem;
+  }
+}
+
+.mat-column-position {
+  font-size: 1.5rem;
 }
 
 .mat-column-position,

@@ -2,11 +2,28 @@
   width: 100%;
   padding: $spacer-6;
   display: flex;
+  flex-direction: column;
+  gap: $spacer-3;
   justify-content: center;
   align-items: center;
 
   @include breakpoint-max-width(md) {
     padding: $spacer-3;
+  }
+}
+
+.search__title {
+  display: flex;
+  align-items: center;
+  gap: $spacer-5;
+
+  & .search__svg {
+    width: 42px;
+    height: 42px;
+    @include breakpoint-max-width(md) {
+      width: 32px;
+      height: 32px;
+    }
   }
 }
 
