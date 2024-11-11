@@ -12,7 +12,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatTabsModule, SearchComponent, NavbarComponent, MediasComponent, RatingComponent],
+  imports: [MatTabsModule, SearchComponent, NavbarComponent, MediasComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   animations: [
@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
 
   mediaType = signal<'tv' | 'movie'>('tv');
   mediaTypeArray: ('tv' | 'movie')[] = ['tv', 'movie']
+  lastActiveTab: number = 0;
 
   private searchService = inject(SearchService);
   private api = inject(TmdbApiService);
@@ -44,6 +45,7 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
+    this.lastActiveTab = this.searchService.getLastActiveTab();
     this.loadTopRated();
     this.searchService.isEmpty$
     .pipe(takeUntilDestroyed(this.destroyRef$))
@@ -78,6 +80,6 @@ export class DashboardComponent implements OnInit {
   }
 
   handleTabChange(index: number | null) {
-    console.log(index)
+    this.searchService.setLastActiveTab(index!);
   }
 }
