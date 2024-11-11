@@ -33,9 +33,9 @@ export class MediaDetailComponent {
 
   media: 'tv' | 'movie' ='tv';
   id!: number;
-  data: WritableSignal<any> = signal({});
-  cast_data: WritableSignal<any> = signal({});
-  hero: WritableSignal<Hero> = signal({
+  data: any = {};
+  cast_data: any = {};
+  hero: Hero = {
     media: 'tv',
     title: '',
     rating: 0,
@@ -44,8 +44,8 @@ export class MediaDetailComponent {
     imageSource: '',
     date: 0,
     description: '',
-  })
-  cast: WritableSignal<Actor[]> = signal([])
+  }
+  cast: Actor[] = [];
 
   private route = inject(ActivatedRoute);
   private location = inject(Location);
@@ -79,8 +79,8 @@ export class MediaDetailComponent {
        .pipe(takeUntilDestroyed(this.destroyRef$))
    .subscribe({
      next: (response) => {
-       this.data.set(response);
-       this.hero.set(this.generateHero(response));
+       this.data = response;
+       this.hero = this.generateHero(response);
      },
      error: (error) => {
        console.error('Error fetching configuration data:', error);
@@ -93,9 +93,9 @@ export class MediaDetailComponent {
        .pipe(takeUntilDestroyed(this.destroyRef$))
    .subscribe({
      next: (response) => {
-       this.cast_data.set(response.cast);
-       this.cast_data().forEach((actor: any) => {
-         this.cast().push({
+       this.cast_data = response.cast;
+       this.cast_data.forEach((actor: any) => {
+         this.cast.push({
            name: actor.name,
            pictureUrl: actor.profile_path,
            character: actor.character
