@@ -32,7 +32,7 @@ describe('MediaDetailComponent', () => {
   it('should display correct title in hero nav_name element', () => {
     const testTitle = 'Breaking Bad';
 
-    component.hero.set({
+    component.hero = {
       media: 'tv',
       title: testTitle, // Testing title
       rating: 8.5,
@@ -41,7 +41,7 @@ describe('MediaDetailComponent', () => {
       imageSource: 'any.png',
       date: 2024,
       description: 'any',
-    });
+    };
 
     fixture.detectChanges();
 
