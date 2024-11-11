@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit {
 
   topRatedMovies: WritableSignal<any[]> = signal([]);
   topRatedTvShows: WritableSignal<any[]> = signal([]);
-  isSearchEmpty = signal<boolean>(true);
 
   mediaType = signal<'tv' | 'movie'>('tv');
   mediaTypeArray: ('tv' | 'movie')[] = ['tv', 'movie']
@@ -47,11 +46,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.lastActiveTab = this.searchService.getLastActiveTab();
     this.loadTopRated();
-    this.searchService.isEmpty$
-    .pipe(takeUntilDestroyed(this.destroyRef$))
-    .subscribe(isEmpty => {
-      this.isSearchEmpty.set(isEmpty);
-    });
   }
 
   loadTopRated() {

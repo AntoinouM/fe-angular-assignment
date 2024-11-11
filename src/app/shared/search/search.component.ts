@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, output, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
 import { SpinnerComponent } from '../spinner/spinner.component';
@@ -28,16 +28,12 @@ export class SearchComponent implements OnInit {
     this.searchControl.setValue(lastSearchTerm);
 
     this.searchControl.valueChanges
-      .pipe(takeUntilDestroyed(this.destroyRef$))
-      .subscribe((term: string | null) => {
-        this.searchService.checkEmpty(term);
-      });
-
-    this.searchControl.valueChanges
       .pipe(
         takeUntilDestroyed(this.destroyRef$),
-        filter((term): term is string => term !== null && term.length >= 3),
-        tap(()=> {this.isSearchLoading.set(true);}),
+        filter((term): term is string => term !== null),
+        tap((term)=> {
+          if (term.length >= 3) this.isSearchLoading.set(true);
+        }),
         debounceTime(1000),
         tap(()=> {this.isSearchLoading.set(false)}),
       )
@@ -49,7 +45,7 @@ export class SearchComponent implements OnInit {
 
   clearField(inputField: HTMLInputElement) {
     inputField.value = '';
-    this.searchService.checkEmpty(inputField.value)
     this.searchService.setLastSearchTerm('');
+    this.searchControl.setValue('');
   }
 }

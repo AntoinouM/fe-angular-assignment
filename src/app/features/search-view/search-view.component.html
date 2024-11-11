@@ -1,4 +1,4 @@
-<p class="search__query">Results for: {{ query() }}</p>
+<p class="search__query">{{ query() }}</p>
 <div class="search-view__wrapper">
   @if(searchResult().length > 0) {
   @for(result of searchResult(); track $index) {
