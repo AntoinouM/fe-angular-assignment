@@ -14,6 +14,9 @@
     </svg>
   </button>
   }
+  @if (!isSearchValid() && inputField.value !== '') {
+  <span class="input__warning">Please type 3 or more characters</span>
+  }
   @if (isSearchLoading()) {
   <app-spinner class="search__spinner"></app-spinner>
   }

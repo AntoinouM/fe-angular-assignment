@@ -4,6 +4,14 @@
   padding: $spacer-6 $spacer-8;
   gap: $spacer-3;
   justify-content: center;
+
+  @include breakpoint-max-width(md) {
+    padding: $spacer-3 $spacer-4;
+  }
+}
+
+.search__query {
+  padding: $spacer-6 0 0 $spacer-10;
 }
 
 .search-view__card {
@@ -27,4 +35,12 @@
     height: auto;
     object-fit: cover;
   }
+}
+
+.no-result__info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacer-3;
+  align-items: center;
+  justify-content: center;
 }

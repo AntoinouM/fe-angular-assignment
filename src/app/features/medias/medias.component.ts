@@ -26,20 +26,25 @@ export class MediasComponent implements OnInit {
   constructor() {}
 
   topRated = input<any[]>([]);
-  isSearchEmpty = input<boolean>(true);
   media = input<'tv' | 'movie'>('tv');
   displayedColumns: string[] = ['position', 'image', 'name', 'year', 'rating'];
 
+  isSearchValid = signal<boolean>(false);
   searchResult = signal<any[]>([]);
+  query = signal<string>('');
 
   ngOnInit() {
         this.searchService.search$
             .pipe(takeUntilDestroyed(this.destroyRef$))
             .subscribe((term) => {
-              if (term) {
+              if (term.length >= 3) {
                 this.searchQuery(term);
+                this.isSearchValid.set(true);
+                this.query.set(term);
               } else {
                 this.searchResult.set([]);
+                this.isSearchValid.set(false);
+                this.query.set('');
               }
             });
   }

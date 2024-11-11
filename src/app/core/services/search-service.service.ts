@@ -9,20 +9,12 @@ export class SearchService {
   private searchSubject = new BehaviorSubject<string>('');
   search$ = this.searchSubject.asObservable();
 
-  private isEmptySubject = new BehaviorSubject<boolean>(true);
-  isEmpty$ = this.isEmptySubject.asObservable();
-
   private lastSearchTerm: string = '';
   private lastActiveTab: number = 0;
 
   setTerm(term: string): void {
     this.searchSubject.next(term);
     this.lastSearchTerm = term;
-  }
-
-  checkEmpty(term: string | null): void {
-    this.lastSearchTerm = term!;
-    this.isEmptySubject.next(term!.length === 0);
   }
 
   getLastActiveTab(): number {

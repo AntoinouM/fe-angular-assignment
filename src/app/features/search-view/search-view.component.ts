@@ -17,6 +17,7 @@ export class SearchViewComponent {
 
   searchResult = input<any[]>([]);
   media = input<string>('tv');
+  query = input<string>('');
 
   handleClickedMedia(id: number) {
     if(this.media() === 'tv') {

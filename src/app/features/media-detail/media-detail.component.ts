@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, input, signal, WritableSignal } from '@angular/core';
+import { Component, DestroyRef, inject, signal, WritableSignal } from '@angular/core';
 import { Location } from '@angular/common';
 import { Hero } from '../../core/models/hero.model';
 import { Actor } from '../../core/models/actor.model';

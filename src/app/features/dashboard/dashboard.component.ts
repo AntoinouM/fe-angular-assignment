@@ -6,7 +6,6 @@ import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SearchService } from '../../core/services/search-service.service';
 import { MediasComponent } from '../medias/medias.component';
-import { RatingComponent } from '../../shared/rating/rating.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -31,7 +30,6 @@ export class DashboardComponent implements OnInit {
 
   topRatedMovies: WritableSignal<any[]> = signal([]);
   topRatedTvShows: WritableSignal<any[]> = signal([]);
-  isSearchEmpty = signal<boolean>(true);
 
   mediaType = signal<'tv' | 'movie'>('tv');
   mediaTypeArray: ('tv' | 'movie')[] = ['tv', 'movie']
@@ -47,11 +45,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.lastActiveTab = this.searchService.getLastActiveTab();
     this.loadTopRated();
-    this.searchService.isEmpty$
-    .pipe(takeUntilDestroyed(this.destroyRef$))
-    .subscribe(isEmpty => {
-      this.isSearchEmpty.set(isEmpty);
-    });
   }
 
   loadTopRated() {

@@ -1,4 +1,4 @@
-@if(isSearchEmpty()) {
+@if(!isSearchValid()) {
 <h3 class="medias__title">TOP RATED {{ media() === 'tv' ? 'TV-SHOWS' : 'MOVIES' }}</h3>
 <div class="top-rated__wrapper">
   <table mat-table [dataSource]="topRated()" class="top-rated-table">
@@ -37,5 +37,5 @@
   </table>
 </div>
 } @else {
-<app-search-view [media]="media()" [searchResult]="searchResult()"></app-search-view>
+<app-search-view [media]="media()" [query]="query()" [searchResult]="searchResult()"></app-search-view>
 }
