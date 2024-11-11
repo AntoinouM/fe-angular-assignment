@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MediaDetailComponent } from './media-detail.component';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import { provideRouter } from '@angular/router';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('MediaDetailComponent', () => {
   let component: MediaDetailComponent;
@@ -11,14 +12,11 @@ describe('MediaDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MediaDetailComponent],
+      imports: [MediaDetailComponent, BrowserAnimationsModule],
       providers: [
+        provideRouter([]),
         provideHttpClient(),
-        provideHttpClient(),
-        {
-          provide: ActivatedRoute,
-          useValue: { paramMap: of({ get: (key: string) => key === 'id' ? 123 : null }) }, // id as number
-        },
+        provideHttpClientTesting(),
       ],
     }).compileComponents();
     httpClient = TestBed.inject(HttpClient);
